@@ -23,12 +23,6 @@ namespace SudokuGame
         public MainWindow()
         {
             InitializeComponent();
-            //Test Test
-<<<<<<< HEAD
-            //test 2
-=======
-            //New Test
->>>>>>> 3a4f56b4264c88c7df5a8d1b9464eff1b692015a
         }
     }
 }
