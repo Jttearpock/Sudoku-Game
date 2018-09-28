@@ -32,22 +32,22 @@ namespace SudokuGame
     /// </summary>
     public partial class MainWindow : Window
     {
+        GameState activeGame = new GameState();
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent();       
         }
 
         private void newGameButton_Click(object sender, RoutedEventArgs e)
         {
-            CreatePuzzle();                                   
+            CreatePuzzle();     
         }
 
         public void CreatePuzzle()
         {
-            ActiveGame currentGame = new ActiveGame();
-            currentGame.ArrPuzzleSolution = new int[9, 9];
-            currentGame.ArrPuzzleBase = new int[9, 9];
-            currentGame.ArrPuzzleCurrent = new int[9, 9];
+            activeGame.ArrPuzzleSolution = new int[9, 9];
+            activeGame.ArrPuzzleBase = new int[9, 9];
+            activeGame.ArrPuzzleCurrent = new int[9, 9];
             StreamReader puzzleReader = File.OpenText(@"..\..\SudokuPuzzleSolutions.txt");
 
             Random puzzleRotation = new Random();
@@ -64,7 +64,7 @@ namespace SudokuGame
                     if (char.IsNumber(c))
                     {
                         // Place the number into the first value of the array
-                        currentGame.ArrPuzzleSolution[x, y] = (int)char.GetNumericValue(c);
+                        activeGame.ArrPuzzleSolution[x, y] = (int)char.GetNumericValue(c);
                         // After char is read, increment the y variable
                         y++;
                     }

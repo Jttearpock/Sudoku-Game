@@ -1,6 +1,6 @@
 ﻿//-----------------------------------------------------------------------
 
-// <copyright file="ActiveGame.cs" company="CompanyName">
+// <copyright file="GameState.cs" company="CompanyName">
 
 // Company copyright tag.
 
@@ -19,7 +19,7 @@ namespace SudokuGame
     /// <summary>
     /// The Class that holds all of the Puzzle Arrays
     /// </summary>
-    public class ActiveGame
+    public class GameState
     {
         /// <summary>
         /// The Array that holds the Puzzle Solution
@@ -30,8 +30,6 @@ namespace SudokuGame
             get { return _arrPuzzleSolution; }
             set { _arrPuzzleSolution = value; }
         }
-
-
 
         /// <summary>
         /// The Array that holds the Base Puzzle for restarting
