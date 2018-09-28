@@ -24,16 +24,32 @@ namespace SudokuGame
         /// <summary>
         /// The Array that holds the Puzzle Solution
         /// </summary>
-        public int[,] ArrPuzzleSolution;
+        private int[,] _arrPuzzleSolution;
+        public int[,] ArrPuzzleSolution
+        {
+            get { return _arrPuzzleSolution; }
+            set { _arrPuzzleSolution = value; }
+        }
+
+
 
         /// <summary>
         /// The Array that holds the Base Puzzle for restarting
         /// </summary>
-        public int[,] ArrPuzzleBase;
-
+        private int[,] _arrPuzzleBase;
+        public int[,] ArrPuzzleBase
+        {
+            get { return _arrPuzzleBase; }
+            set { _arrPuzzleBase = value; }
+        }
         /// <summary>
         /// The Array that holds the Current Puzzle on the game board
         /// </summary>
-        public int[,] ArrPuzzleCurrent;
+        private int[,] _arrPuzzleCurrent;
+        public int[,] ArrPuzzleCurrent
+        {
+            get { return _arrPuzzleCurrent; }
+            set { _arrPuzzleCurrent = value; }
+        }
     }
 }
