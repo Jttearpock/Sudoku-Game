@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,11 @@ namespace SudokuGame
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void newGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            StreamReader newPuzzleReader = File.OpenText(@"SudokuPuzzleSolutions.txt");
         }
     }
 }

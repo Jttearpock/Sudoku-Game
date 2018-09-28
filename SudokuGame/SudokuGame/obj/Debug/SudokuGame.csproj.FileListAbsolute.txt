@@ -1,2 +1,15 @@
 D:\Users\John\Documents\NWTC\Part 2 C#\Game 1 - Sudoku\SudokuGame\SudokuGame\bin\Debug\SudokuGame.exe.config
 D:\Users\John\Desktop\SudokuGame\SudokuGame\bin\Debug\SudokuGame.exe.config
+D:\Users\John\Documents\NWTC\Part 2 C#\Game 1 - Sudoku\SudokuGame\SudokuGame\obj\Debug\SudokuGame.csprojResolveAssemblyReference.cache
+D:\Users\John\Documents\NWTC\Part 2 C#\Game 1 - Sudoku\SudokuGame\SudokuGame\obj\Debug\MainWindow.g.cs
+D:\Users\John\Documents\NWTC\Part 2 C#\Game 1 - Sudoku\SudokuGame\SudokuGame\obj\Debug\App.g.cs
+D:\Users\John\Documents\NWTC\Part 2 C#\Game 1 - Sudoku\SudokuGame\SudokuGame\obj\Debug\SudokuGame_MarkupCompile.cache
+D:\Users\John\Documents\NWTC\Part 2 C#\Game 1 - Sudoku\SudokuGame\SudokuGame\obj\Debug\SudokuGame_MarkupCompile.lref
+D:\Users\John\Documents\NWTC\Part 2 C#\Game 1 - Sudoku\SudokuGame\SudokuGame\bin\Debug\SudokuGame.exe
+D:\Users\John\Documents\NWTC\Part 2 C#\Game 1 - Sudoku\SudokuGame\SudokuGame\bin\Debug\SudokuGame.pdb
+D:\Users\John\Documents\NWTC\Part 2 C#\Game 1 - Sudoku\SudokuGame\SudokuGame\obj\Debug\MainWindow.baml
+D:\Users\John\Documents\NWTC\Part 2 C#\Game 1 - Sudoku\SudokuGame\SudokuGame\obj\Debug\SudokuGame.g.resources
+D:\Users\John\Documents\NWTC\Part 2 C#\Game 1 - Sudoku\SudokuGame\SudokuGame\obj\Debug\SudokuGame.Properties.Resources.resources
+D:\Users\John\Documents\NWTC\Part 2 C#\Game 1 - Sudoku\SudokuGame\SudokuGame\obj\Debug\SudokuGame.csproj.GenerateResource.Cache
+D:\Users\John\Documents\NWTC\Part 2 C#\Game 1 - Sudoku\SudokuGame\SudokuGame\obj\Debug\SudokuGame.exe
+D:\Users\John\Documents\NWTC\Part 2 C#\Game 1 - Sudoku\SudokuGame\SudokuGame\obj\Debug\SudokuGame.pdb

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace SudokuGame
 {
     public class ActiveGame
@@ -12,4 +13,5 @@ namespace SudokuGame
         public int[,] ArrPuzzleBase;
         public int[,] ArrPuzzleCurrent;
     }
+      
 }
