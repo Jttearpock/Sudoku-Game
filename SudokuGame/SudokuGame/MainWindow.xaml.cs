@@ -1,22 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿//-----------------------------------------------------------------------
+
+// <copyright file="MainWindow.xaml.cs" company="CompanyName">
+
+// Company copyright tag.
+
+// </copyright>
+
+//-----------------------------------------------------------------------
 
 namespace SudokuGame
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Security.Cryptography;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Data;
+    using System.Windows.Documents;
+    using System.Windows.Input;
+    using System.Windows.Media;
+    using System.Windows.Media.Imaging;
+    using System.Windows.Navigation;
+    using System.Windows.Shapes;
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -29,12 +39,17 @@ namespace SudokuGame
 
         private void newGameButton_Click(object sender, RoutedEventArgs e)
         {
+            createPuzzle();
+        }
+
+        public void createPuzzle()
+        {
             ActiveGame CurrentGame = new ActiveGame();
             CurrentGame.ArrPuzzleSolution = new int[9, 9];
             CurrentGame.ArrPuzzleBase = new int[9, 9];
             CurrentGame.ArrPuzzleCurrent = new int[9, 9];
             StreamReader PuzzleReader = File.OpenText(@"..\..\SudokuPuzzleSolutions.txt");
-            // Random RandomPuzzle = new Random(1-4);
+            
             int x = 0;
             int y = 0;
             while (x < 9)
@@ -44,7 +59,7 @@ namespace SudokuGame
                 foreach (char c in currentLine)
                 {
                     if (char.IsNumber(c))
-                    {                                       
+                    {
                         // Place the number into the first value of the array
                         CurrentGame.ArrPuzzleSolution[x, y] = (int)char.GetNumericValue(c);
                         // After char is read, increment the y variable
