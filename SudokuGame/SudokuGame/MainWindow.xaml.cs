@@ -54,8 +54,6 @@ namespace SudokuGame
                 // After Line is read, increment the x variable
                 x++;
             }
-
-            MessageBox.Show("Giggle");
         }
     }
 }
