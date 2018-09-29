@@ -49,5 +49,15 @@ namespace SudokuGame
             get { return _arrPuzzleCurrent; }
             set { _arrPuzzleCurrent = value; }
         }
+
+        /// <summary>
+        /// Bool stating if there is an active game or not
+        /// </summary>
+        private bool _onGoingGame = false;
+        public bool OnGoingGame
+        {
+            get { return _onGoingGame; }
+            set { _onGoingGame = value; }
+        }
     }
 }
