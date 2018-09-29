@@ -284,9 +284,6 @@
       </violation>
     </violations>
   </sourcecode>
-  <project key="1313538722">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
   <sourcecode name="GameState.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2018/09/24 13:01:59.013</styleCop>
@@ -489,11 +486,14 @@
       </violation>
     </violations>
   </sourcecode>
+  <project key="1313538722">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
   <sourcecode name="MainWindow.xaml.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2018/09/24 13:01:59.013</styleCop>
       <settingsFile>2018/09/24 13:01:58.995</settingsFile>
-      <sourceFile>2018/09/29 12:37:05.661</sourceFile>
+      <sourceFile>2018/09/29 12:54:15.917</sourceFile>
       <parser>2018/09/24 13:01:59.013</parser>
       <StyleCop.CSharp.DocumentationRules>2018/09/24 13:01:59.013</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>0</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -511,190 +511,175 @@
       <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
     </timestamps>
     <violations>
-      <violation namespace="StyleCop.CSharp.DocumentationRules" rule="FileMustHaveHeader" ruleCheckId="SA1633">
-        <context>The file has no header, the header Xml is invalid, or the header is not located at the top of the file.</context>
-        <line>1</line>
-        <warning>False</warning>
-      </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="CodeMustNotContainMultipleBlankLinesInARow" ruleCheckId="SA1507">
         <context>The code must not contain multiple blank lines in a row.</context>
-        <line>299</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.MaintainabilityRules" rule="FieldsMustBePrivate" ruleCheckId="SA1401">
-        <context>Fields must be declared with private access. Use properties to expose fields.</context>
-        <line>38</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
-        <context>The constructor must have a documentation header.</context>
-        <line>40</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixCallsCorrectly" ruleCheckId="SA1126">
-        <context>The call to InitializeComponent must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
-        <line>42</line>
-        <index>1172</index>
-        <endIndex>1190</endIndex>
-        <startLine>42</startLine>
-        <startColumn>13</startColumn>
-        <endLine>42</endLine>
-        <endColumn>31</endColumn>
+        <line>298</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementParametersMustBeDocumented" ruleCheckId="SA1611">
         <context>The documentation header must contain param tags matching the element's parameter list.</context>
-        <line>49</line>
+        <line>48</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustBeOrderedByAccess" ruleCheckId="SA1202">
         <context>All private methods must be placed after all public methods.</context>
-        <line>67</line>
+        <line>66</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustBeOrderedByAccess" ruleCheckId="SA1202">
         <context>All private methods must be placed after all public methods.</context>
-        <line>303</line>
+        <line>302</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixCallsCorrectly" ruleCheckId="SA1126">
         <context>The call to CreatePuzzle must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
-        <line>55</line>
-        <index>1710</index>
-        <endIndex>1721</endIndex>
-        <startLine>55</startLine>
+        <line>54</line>
+        <index>1831</index>
+        <endIndex>1842</endIndex>
+        <startLine>54</startLine>
         <startColumn>21</startColumn>
-        <endLine>55</endLine>
+        <endLine>54</endLine>
         <endColumn>32</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixCallsCorrectly" ruleCheckId="SA1126">
-        <context>The call to ActiveGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
-        <line>51</line>
-        <index>1500</index>
-        <endIndex>1514</endIndex>
-        <startLine>51</startLine>
+        <context>The call to activeGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
+        <line>50</line>
+        <index>1621</index>
+        <endIndex>1635</endIndex>
+        <startLine>50</startLine>
         <startColumn>17</startColumn>
-        <endLine>51</endLine>
+        <endLine>50</endLine>
         <endColumn>31</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixCallsCorrectly" ruleCheckId="SA1126">
         <context>The call to CreatePuzzle must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
-        <line>60</line>
-        <index>1810</index>
-        <endIndex>1821</endIndex>
-        <startLine>60</startLine>
+        <line>59</line>
+        <index>1931</index>
+        <endIndex>1942</endIndex>
+        <startLine>59</startLine>
         <startColumn>17</startColumn>
-        <endLine>60</endLine>
+        <endLine>59</endLine>
         <endColumn>28</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="SingleLineCommentMustBePrecededByBlankLine" ruleCheckId="SA1515">
         <context>A single-line comment must be preceded by a blank line or another single-line comment, or must be the first item in its scope. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
-        <line>86</line>
+        <line>85</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="SingleLineCommentMustBePrecededByBlankLine" ruleCheckId="SA1515">
         <context>A single-line comment must be preceded by a blank line or another single-line comment, or must be the first item in its scope. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
-        <line>117</line>
+        <line>116</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="CodeMustNotContainMultipleBlankLinesInARow" ruleCheckId="SA1507">
         <context>The code must not contain multiple blank lines in a row.</context>
-        <line>120</line>
+        <line>119</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="SingleLineCommentsMustNotBeFollowedByBlankLine" ruleCheckId="SA1512">
         <context>A single-line comment must not be followed by a blank line. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
-        <line>118</line>
+        <line>117</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="SingleLineCommentMustBePrecededByBlankLine" ruleCheckId="SA1515">
         <context>A single-line comment must be preceded by a blank line or another single-line comment, or must be the first item in its scope. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
-        <line>135</line>
+        <line>134</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="SingleLineCommentMustBePrecededByBlankLine" ruleCheckId="SA1515">
         <context>A single-line comment must be preceded by a blank line or another single-line comment, or must be the first item in its scope. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
-        <line>139</line>
+        <line>138</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="SingleLineCommentMustBePrecededByBlankLine" ruleCheckId="SA1515">
         <context>A single-line comment must be preceded by a blank line or another single-line comment, or must be the first item in its scope. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
-        <line>157</line>
+        <line>156</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="SingleLineCommentMustBePrecededByBlankLine" ruleCheckId="SA1515">
         <context>A single-line comment must be preceded by a blank line or another single-line comment, or must be the first item in its scope. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
-        <line>161</line>
+        <line>160</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="SingleLineCommentMustBePrecededByBlankLine" ruleCheckId="SA1515">
         <context>A single-line comment must be preceded by a blank line or another single-line comment, or must be the first item in its scope. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
-        <line>179</line>
+        <line>178</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="SingleLineCommentMustBePrecededByBlankLine" ruleCheckId="SA1515">
         <context>A single-line comment must be preceded by a blank line or another single-line comment, or must be the first item in its scope. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
-        <line>183</line>
+        <line>182</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="SingleLineCommentMustBePrecededByBlankLine" ruleCheckId="SA1515">
         <context>A single-line comment must be preceded by a blank line or another single-line comment, or must be the first item in its scope. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
-        <line>201</line>
+        <line>200</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="SingleLineCommentMustBePrecededByBlankLine" ruleCheckId="SA1515">
         <context>A single-line comment must be preceded by a blank line or another single-line comment, or must be the first item in its scope. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
-        <line>205</line>
+        <line>204</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="SingleLineCommentMustBePrecededByBlankLine" ruleCheckId="SA1515">
         <context>A single-line comment must be preceded by a blank line or another single-line comment, or must be the first item in its scope. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
-        <line>223</line>
+        <line>222</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="SingleLineCommentMustBePrecededByBlankLine" ruleCheckId="SA1515">
         <context>A single-line comment must be preceded by a blank line or another single-line comment, or must be the first item in its scope. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
-        <line>227</line>
+        <line>226</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="SingleLineCommentMustBePrecededByBlankLine" ruleCheckId="SA1515">
         <context>A single-line comment must be preceded by a blank line or another single-line comment, or must be the first item in its scope. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
-        <line>245</line>
+        <line>244</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="SingleLineCommentMustBePrecededByBlankLine" ruleCheckId="SA1515">
         <context>A single-line comment must be preceded by a blank line or another single-line comment, or must be the first item in its scope. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
-        <line>249</line>
+        <line>248</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="SingleLineCommentMustBePrecededByBlankLine" ruleCheckId="SA1515">
         <context>A single-line comment must be preceded by a blank line or another single-line comment, or must be the first item in its scope. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
-        <line>267</line>
+        <line>266</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="SingleLineCommentMustBePrecededByBlankLine" ruleCheckId="SA1515">
         <context>A single-line comment must be preceded by a blank line or another single-line comment, or must be the first item in its scope. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
-        <line>271</line>
+        <line>270</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="SingleLineCommentMustBePrecededByBlankLine" ruleCheckId="SA1515">
         <context>A single-line comment must be preceded by a blank line or another single-line comment, or must be the first item in its scope. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
-        <line>289</line>
+        <line>288</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="SingleLineCommentMustBePrecededByBlankLine" ruleCheckId="SA1515">
         <context>A single-line comment must be preceded by a blank line or another single-line comment, or must be the first item in its scope. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
-        <line>293</line>
+        <line>292</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixCallsCorrectly" ruleCheckId="SA1126">
-        <context>The call to ActiveGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
+        <context>The call to activeGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
+        <line>68</line>
+        <index>2164</index>
+        <endIndex>2178</endIndex>
+        <startLine>68</startLine>
+        <startColumn>13</startColumn>
+        <endLine>68</endLine>
+        <endColumn>27</endColumn>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixCallsCorrectly" ruleCheckId="SA1126">
+        <context>The call to activeGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
         <line>69</line>
-        <index>2043</index>
-        <endIndex>2057</endIndex>
+        <index>2213</index>
+        <endIndex>2227</endIndex>
         <startLine>69</startLine>
         <startColumn>13</startColumn>
         <endLine>69</endLine>
@@ -702,10 +687,10 @@
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixCallsCorrectly" ruleCheckId="SA1126">
-        <context>The call to ActiveGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
+        <context>The call to activeGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
         <line>70</line>
-        <index>2092</index>
-        <endIndex>2106</endIndex>
+        <index>2280</index>
+        <endIndex>2294</endIndex>
         <startLine>70</startLine>
         <startColumn>13</startColumn>
         <endLine>70</endLine>
@@ -713,10 +698,10 @@
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixCallsCorrectly" ruleCheckId="SA1126">
-        <context>The call to ActiveGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
+        <context>The call to activeGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
         <line>71</line>
-        <index>2159</index>
-        <endIndex>2173</endIndex>
+        <index>2343</index>
+        <endIndex>2357</endIndex>
         <startLine>71</startLine>
         <startColumn>13</startColumn>
         <endLine>71</endLine>
@@ -724,224 +709,213 @@
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixCallsCorrectly" ruleCheckId="SA1126">
-        <context>The call to ActiveGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
-        <line>72</line>
-        <index>2222</index>
-        <endIndex>2236</endIndex>
-        <startLine>72</startLine>
-        <startColumn>13</startColumn>
-        <endLine>72</endLine>
-        <endColumn>27</endColumn>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixCallsCorrectly" ruleCheckId="SA1126">
-        <context>The call to ActiveGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
-        <line>134</line>
-        <index>4614</index>
-        <endIndex>4628</endIndex>
-        <startLine>134</startLine>
+        <context>The call to activeGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
+        <line>133</line>
+        <index>4735</index>
+        <endIndex>4749</endIndex>
+        <startLine>133</startLine>
         <startColumn>29</startColumn>
-        <endLine>134</endLine>
+        <endLine>133</endLine>
         <endColumn>43</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixCallsCorrectly" ruleCheckId="SA1126">
-        <context>The call to ActiveGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
-        <line>156</line>
-        <index>5484</index>
-        <endIndex>5498</endIndex>
-        <startLine>156</startLine>
+        <context>The call to activeGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
+        <line>155</line>
+        <index>5605</index>
+        <endIndex>5619</endIndex>
+        <startLine>155</startLine>
         <startColumn>29</startColumn>
-        <endLine>156</endLine>
+        <endLine>155</endLine>
         <endColumn>43</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixCallsCorrectly" ruleCheckId="SA1126">
-        <context>The call to ActiveGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
-        <line>178</line>
-        <index>6340</index>
-        <endIndex>6354</endIndex>
-        <startLine>178</startLine>
+        <context>The call to activeGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
+        <line>177</line>
+        <index>6461</index>
+        <endIndex>6475</endIndex>
+        <startLine>177</startLine>
         <startColumn>29</startColumn>
-        <endLine>178</endLine>
+        <endLine>177</endLine>
         <endColumn>43</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixCallsCorrectly" ruleCheckId="SA1126">
-        <context>The call to ActiveGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
-        <line>200</line>
-        <index>7196</index>
-        <endIndex>7210</endIndex>
-        <startLine>200</startLine>
+        <context>The call to activeGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
+        <line>199</line>
+        <index>7317</index>
+        <endIndex>7331</endIndex>
+        <startLine>199</startLine>
         <startColumn>29</startColumn>
-        <endLine>200</endLine>
+        <endLine>199</endLine>
         <endColumn>43</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixCallsCorrectly" ruleCheckId="SA1126">
-        <context>The call to ActiveGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
-        <line>222</line>
-        <index>8052</index>
-        <endIndex>8066</endIndex>
-        <startLine>222</startLine>
+        <context>The call to activeGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
+        <line>221</line>
+        <index>8173</index>
+        <endIndex>8187</endIndex>
+        <startLine>221</startLine>
         <startColumn>29</startColumn>
-        <endLine>222</endLine>
+        <endLine>221</endLine>
         <endColumn>43</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixCallsCorrectly" ruleCheckId="SA1126">
-        <context>The call to ActiveGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
-        <line>244</line>
-        <index>8908</index>
-        <endIndex>8922</endIndex>
-        <startLine>244</startLine>
+        <context>The call to activeGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
+        <line>243</line>
+        <index>9029</index>
+        <endIndex>9043</endIndex>
+        <startLine>243</startLine>
         <startColumn>29</startColumn>
-        <endLine>244</endLine>
+        <endLine>243</endLine>
         <endColumn>43</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixCallsCorrectly" ruleCheckId="SA1126">
-        <context>The call to ActiveGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
-        <line>266</line>
-        <index>9764</index>
-        <endIndex>9778</endIndex>
-        <startLine>266</startLine>
+        <context>The call to activeGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
+        <line>265</line>
+        <index>9885</index>
+        <endIndex>9899</endIndex>
+        <startLine>265</startLine>
         <startColumn>29</startColumn>
-        <endLine>266</endLine>
+        <endLine>265</endLine>
         <endColumn>43</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixCallsCorrectly" ruleCheckId="SA1126">
-        <context>The call to ActiveGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
-        <line>288</line>
-        <index>10620</index>
-        <endIndex>10634</endIndex>
-        <startLine>288</startLine>
+        <context>The call to activeGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
+        <line>287</line>
+        <index>10741</index>
+        <endIndex>10755</endIndex>
+        <startLine>287</startLine>
         <startColumn>29</startColumn>
-        <endLine>288</endLine>
+        <endLine>287</endLine>
         <endColumn>43</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.SpacingRules" rule="SingleLineCommentsMustBeginWithSingleSpace" ruleCheckId="SA1005">
         <context>The comment must start with a single space. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
-        <line>118</line>
-        <index>4082</index>
-        <endIndex>4103</endIndex>
-        <startLine>118</startLine>
+        <line>117</line>
+        <index>4203</index>
+        <endIndex>4224</endIndex>
+        <startLine>117</startLine>
         <startColumn>13</startColumn>
-        <endLine>118</endLine>
+        <endLine>117</endLine>
         <endColumn>34</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixCallsCorrectly" ruleCheckId="SA1126">
-        <context>The call to ActiveGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
-        <line>305</line>
-        <index>11166</index>
-        <endIndex>11180</endIndex>
-        <startLine>305</startLine>
+        <context>The call to activeGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
+        <line>304</line>
+        <index>11287</index>
+        <endIndex>11301</endIndex>
+        <startLine>304</startLine>
         <startColumn>13</startColumn>
-        <endLine>305</endLine>
+        <endLine>304</endLine>
         <endColumn>27</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixCallsCorrectly" ruleCheckId="SA1126">
-        <context>The call to ActiveGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
-        <line>312</line>
-        <index>11389</index>
-        <endIndex>11403</endIndex>
-        <startLine>312</startLine>
+        <context>The call to activeGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
+        <line>311</line>
+        <index>11510</index>
+        <endIndex>11524</endIndex>
+        <startLine>311</startLine>
         <startColumn>21</startColumn>
-        <endLine>312</endLine>
+        <endLine>311</endLine>
         <endColumn>35</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixCallsCorrectly" ruleCheckId="SA1126">
-        <context>The call to ActiveGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
-        <line>312</line>
-        <index>11430</index>
-        <endIndex>11444</endIndex>
-        <startLine>312</startLine>
+        <context>The call to activeGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
+        <line>311</line>
+        <index>11551</index>
+        <endIndex>11565</endIndex>
+        <startLine>311</startLine>
         <startColumn>62</startColumn>
-        <endLine>312</endLine>
+        <endLine>311</endLine>
         <endColumn>76</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.SpacingRules" rule="CommasMustBeSpacedCorrectly" ruleCheckId="SA1001">
         <context>Invalid spacing around the comma.</context>
-        <line>305</line>
-        <index>11213</index>
-        <endIndex>11213</endIndex>
-        <startLine>305</startLine>
+        <line>304</line>
+        <index>11334</index>
+        <endIndex>11334</endIndex>
+        <startLine>304</startLine>
         <startColumn>60</startColumn>
-        <endLine>305</endLine>
+        <endLine>304</endLine>
         <endColumn>60</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementParametersMustBeDocumented" ruleCheckId="SA1611">
         <context>The documentation header must contain param tags matching the element's parameter list.</context>
-        <line>320</line>
+        <line>319</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="ElementsMustBeSeparatedByBlankLine" ruleCheckId="SA1516">
         <context>Adjacent elements must be separated by a blank line.</context>
-        <line>320</line>
+        <line>319</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="ElementDocumentationHeaderMustBePrecededByBlankLine" ruleCheckId="SA1514">
         <context>A documentation header must be preceded by a blank line or must be the first item in its scope.</context>
-        <line>317</line>
+        <line>316</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="ClosingCurlyBracketsMustNotBePrecededByBlankLine" ruleCheckId="SA1508">
         <context>A closing curly bracket must not be preceded by a blank line.</context>
-        <line>330</line>
+        <line>329</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixCallsCorrectly" ruleCheckId="SA1126">
         <context>The call to RestartPuzzle must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
-        <line>326</line>
-        <index>11975</index>
-        <endIndex>11987</endIndex>
-        <startLine>326</startLine>
+        <line>325</line>
+        <index>12096</index>
+        <endIndex>12108</endIndex>
+        <startLine>325</startLine>
         <startColumn>21</startColumn>
-        <endLine>326</endLine>
+        <endLine>325</endLine>
         <endColumn>33</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixCallsCorrectly" ruleCheckId="SA1126">
-        <context>The call to ActiveGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
-        <line>322</line>
-        <index>11757</index>
-        <endIndex>11771</endIndex>
-        <startLine>322</startLine>
+        <context>The call to activeGameState must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
+        <line>321</line>
+        <index>11878</index>
+        <endIndex>11892</endIndex>
+        <startLine>321</startLine>
         <startColumn>17</startColumn>
-        <endLine>322</endLine>
+        <endLine>321</endLine>
         <endColumn>31</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementParametersMustBeDocumented" ruleCheckId="SA1611">
         <context>The documentation header must contain param tags matching the element's parameter list.</context>
-        <line>334</line>
+        <line>333</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="ElementsMustBeSeparatedByBlankLine" ruleCheckId="SA1516">
         <context>Adjacent elements must be separated by a blank line.</context>
-        <line>334</line>
+        <line>333</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="ElementDocumentationHeaderMustBePrecededByBlankLine" ruleCheckId="SA1514">
         <context>A documentation header must be preceded by a blank line or must be the first item in its scope.</context>
-        <line>331</line>
+        <line>330</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixCallsCorrectly" ruleCheckId="SA1126">
         <context>The call to Close must begin with the 'this.', 'base.', 'object.' or 'MainWindow.' or 'Window.' prefix to indicate the intended method call. </context>
-        <line>338</line>
-        <index>12399</index>
-        <endIndex>12403</endIndex>
-        <startLine>338</startLine>
+        <line>337</line>
+        <index>12520</index>
+        <endIndex>12524</endIndex>
+        <startLine>337</startLine>
         <startColumn>17</startColumn>
-        <endLine>338</endLine>
+        <endLine>337</endLine>
         <endColumn>21</endColumn>
         <warning>False</warning>
       </violation>
