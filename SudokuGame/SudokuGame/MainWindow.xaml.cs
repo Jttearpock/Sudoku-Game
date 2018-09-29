@@ -67,9 +67,9 @@ namespace SudokuGame
         public void CreatePuzzle()
         {
             ActiveGameState.OnGoingGame = true;
-            ActiveGameState.ArrPuzzleSolution = new int[9, 9];
-            ActiveGameState.ArrPuzzleBase = new int[9, 9];
-            ActiveGameState.ArrPuzzleCurrent = new int[9, 9];
+            ActiveGameState.ArrPuzzleSolution = new string[9, 9];
+            ActiveGameState.ArrPuzzleBase = new string[9, 9];
+            ActiveGameState.ArrPuzzleCurrent = new string[9, 9];
             StreamReader puzzleReader = File.OpenText(@"..\..\SudokuPuzzleSolutions.txt");
 
             // Summary
@@ -115,7 +115,7 @@ namespace SudokuGame
             Random puzzleRotation = new Random();
             int rotateValue = puzzleRotation.Next(1, 8);
             // Code for testing specific Rotation
-            // int rotateValue = 6;
+            //int rotateValue = 1;
 
 
             if (rotateValue == 1)
@@ -131,12 +131,11 @@ namespace SudokuGame
                         if (char.IsNumber(c))
                         {
                             // Place the number into the first value of the array
-                            ActiveGameState.ArrPuzzleSolution[x, y] = (int)char.GetNumericValue(c);
+                            ActiveGameState.ArrPuzzleSolution[x, y] = c.ToString();
                             // After char is read, increment the y variable
                             y++;
                         }
-                    }
-
+                    }              
                     // After Line is read, increment the x variable
                     x++;
                 }
@@ -154,12 +153,11 @@ namespace SudokuGame
                         if (char.IsNumber(c))
                         {
                             // Place the number into the first value of the array
-                            ActiveGameState.ArrPuzzleSolution[x, y] = (int)char.GetNumericValue(c);
+                            ActiveGameState.ArrPuzzleSolution[x, y] = c.ToString();
                             // After char is read, increment the y variable
                             y--;
                         }
                     }
-
                     // After Line is read, increment the x variable
                     x++;
                 }
@@ -177,12 +175,11 @@ namespace SudokuGame
                         if (char.IsNumber(c))
                         {
                             // Place the number into the first value of the array
-                            ActiveGameState.ArrPuzzleSolution[x, y] = (int)char.GetNumericValue(c);
+                            ActiveGameState.ArrPuzzleSolution[x, y] = c.ToString();
                             // After char is read, increment the y variable
                             y++;
                         }
                     }
-
                     // After Line is read, increment the x variable
                     x--;
                 }
@@ -200,12 +197,11 @@ namespace SudokuGame
                         if (char.IsNumber(c))
                         {
                             // Place the number into the first value of the array
-                            ActiveGameState.ArrPuzzleSolution[x, y] = (int)char.GetNumericValue(c);
+                            ActiveGameState.ArrPuzzleSolution[x, y] = c.ToString();
                             // After char is read, increment the y variable
                             y--;
                         }
                     }
-
                     // After Line is read, increment the x variable
                     x--;
                 }
@@ -223,12 +219,11 @@ namespace SudokuGame
                         if (char.IsNumber(c))
                         {
                             // Place the number into the first value of the array
-                            ActiveGameState.ArrPuzzleSolution[x, y] = (int)char.GetNumericValue(c);
+                            ActiveGameState.ArrPuzzleSolution[x, y] = c.ToString();
                             // After char is read, increment the y variable
                             x++;
                         }
                     }
-
                     // After Line is read, increment the x variable
                     y++;
                 }
@@ -246,12 +241,11 @@ namespace SudokuGame
                         if (char.IsNumber(c))
                         {
                             // Place the number into the first value of the array
-                            ActiveGameState.ArrPuzzleSolution[x, y] = (int)char.GetNumericValue(c);
+                            ActiveGameState.ArrPuzzleSolution[x, y] = c.ToString();
                             // After char is read, increment the y variable
                             x++;
                         }
                     }
-
                     // After Line is read, increment the x variable
                     y--;
                 }
@@ -269,12 +263,11 @@ namespace SudokuGame
                         if (char.IsNumber(c))
                         {
                             // Place the number into the first value of the array
-                            ActiveGameState.ArrPuzzleSolution[x, y] = (int)char.GetNumericValue(c);
+                            ActiveGameState.ArrPuzzleSolution[x, y] = c.ToString();
                             // After char is read, increment the y variable
                             x--;
                         }
                     }
-
                     // After Line is read, increment the x variable
                     y++;
                 }
@@ -292,12 +285,11 @@ namespace SudokuGame
                         if (char.IsNumber(c))
                         {
                             // Place the number into the first value of the array
-                            ActiveGameState.ArrPuzzleSolution[x, y] = (int)char.GetNumericValue(c);
+                            ActiveGameState.ArrPuzzleSolution[x, y] = c.ToString();
                             // After char is read, increment the y variable
                             x--;
                         }
                     }
-
                     // After Line is read, increment the x variable
                     y--;
                 }
@@ -310,7 +302,7 @@ namespace SudokuGame
         /// </summary>
         public void RestartPuzzle()
         {
-            ActiveGameState.ArrPuzzleCurrent = new int[9,9];
+            ActiveGameState.ArrPuzzleCurrent = new string[9,9];
             int y;
             for (int x = 0; x < 9; x++)
             {

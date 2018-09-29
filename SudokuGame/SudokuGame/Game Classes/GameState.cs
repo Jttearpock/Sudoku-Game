@@ -24,8 +24,8 @@ namespace SudokuGame
         /// <summary>
         /// The Array that holds the Puzzle Solution
         /// </summary>
-        private int[,] _arrPuzzleSolution;
-        public int[,] ArrPuzzleSolution
+        private string[,] _arrPuzzleSolution;
+        public string[,] ArrPuzzleSolution
         {
             get { return _arrPuzzleSolution; }
             set { _arrPuzzleSolution = value; }
@@ -34,8 +34,8 @@ namespace SudokuGame
         /// <summary>
         /// The Array that holds the Base Puzzle for restarting
         /// </summary>
-        private int[,] _arrPuzzleBase;
-        public int[,] ArrPuzzleBase
+        private string[,] _arrPuzzleBase;
+        public string[,] ArrPuzzleBase
         {
             get { return _arrPuzzleBase; }
             set { _arrPuzzleBase = value; }
@@ -43,8 +43,8 @@ namespace SudokuGame
         /// <summary>
         /// The Array that holds the Current Puzzle on the game board
         /// </summary>
-        private int[,] _arrPuzzleCurrent;
-        public int[,] ArrPuzzleCurrent
+        private string[,] _arrPuzzleCurrent;
+        public string[,] ArrPuzzleCurrent
         {
             get { return _arrPuzzleCurrent; }
             set { _arrPuzzleCurrent = value; }
