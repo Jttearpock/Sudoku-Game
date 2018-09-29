@@ -32,45 +32,225 @@ namespace SudokuGame
     /// </summary>
     public partial class MainWindow : Window
     {
-        GameState activeGame = new GameState();
+        /// <summary>
+        /// Instantiate the ActiveGameState GameState class
+        /// </summary>
+        public GameState ActiveGameState = new GameState();
+
         public MainWindow()
         {
-            InitializeComponent();       
+            InitializeComponent();
         }
 
-        private void newGameButton_Click(object sender, RoutedEventArgs e)
+        private void NewGameButton_Click(object sender, RoutedEventArgs e)
         {
-            CreatePuzzle();     
+            CreatePuzzle();
         }
 
         public void CreatePuzzle()
         {
-            activeGame.ArrPuzzleSolution = new int[9, 9];
-            activeGame.ArrPuzzleBase = new int[9, 9];
-            activeGame.ArrPuzzleCurrent = new int[9, 9];
+            ActiveGameState.ArrPuzzleSolution = new int[9, 9];
+            ActiveGameState.ArrPuzzleBase = new int[9, 9];
+            ActiveGameState.ArrPuzzleCurrent = new int[9, 9];
             StreamReader puzzleReader = File.OpenText(@"..\..\SudokuPuzzleSolutions.txt");
 
             Random puzzleRotation = new Random();
-            int rotateValue = puzzleRotation.Next(1, 4);
+            int rotateValue = puzzleRotation.Next(1, 8);
+            // Code for testing specific Rotation
+            // int rotateValue = 6;
 
-            int x = 0;
-            int y = 0;
-            while (x < 9)
+            
+            Random selectPuzzle = new Random();
+            int puzzleNumber = selectPuzzle.Next(1, 4);
+            // Code for testing specific Puzzle selection
+            // int puzzleNumber = 2;
+            int x;
+            int y;
+            int linecount;
+
+            if (rotateValue == 1)
             {
-                string currentLine = puzzleReader.ReadLine();
+                x = 0;
                 y = 0;
-                foreach (char c in currentLine)
+                while (x < 9)
                 {
-                    if (char.IsNumber(c))
+                    string currentLine = puzzleReader.ReadLine();
+                    y = 0;
+                    foreach (char c in currentLine)
                     {
-                        // Place the number into the first value of the array
-                        activeGame.ArrPuzzleSolution[x, y] = (int)char.GetNumericValue(c);
-                        // After char is read, increment the y variable
-                        y++;
+                        if (char.IsNumber(c))
+                        {
+                            // Place the number into the first value of the array
+                            ActiveGameState.ArrPuzzleSolution[x, y] = (int) char.GetNumericValue(c);
+                            // After char is read, increment the y variable
+                            y++;
+                        }
                     }
+
+                    // After Line is read, increment the x variable
+                    x++;
                 }
-                // After Line is read, increment the x variable
-                x++;
+            }
+            else if (rotateValue == 2)
+            {
+                x = 0;
+                y = 8;
+                while (x < 9)
+                {
+                    string currentLine = puzzleReader.ReadLine();
+                    y = 8;
+                    foreach (char c in currentLine)
+                    {
+                        if (char.IsNumber(c))
+                        {
+                            // Place the number into the first value of the array
+                            ActiveGameState.ArrPuzzleSolution[x, y] = (int) char.GetNumericValue(c);
+                            // After char is read, increment the y variable
+                            y--;
+                        }
+                    }
+
+                    // After Line is read, increment the x variable
+                    x++;
+                }
+            }
+            else if (rotateValue == 3)
+            {
+                x = 8;
+                y = 0;
+                while (x > 0)
+                {
+                    string currentLine = puzzleReader.ReadLine();
+                    y = 0;
+                    foreach (char c in currentLine)
+                    {
+                        if (char.IsNumber(c))
+                        {
+                            // Place the number into the first value of the array
+                            ActiveGameState.ArrPuzzleSolution[x, y] = (int) char.GetNumericValue(c);
+                            // After char is read, increment the y variable
+                            y++;
+                        }
+                    }
+
+                    // After Line is read, increment the x variable
+                    x--;
+                }
+            }
+            else if (rotateValue == 4)
+            {
+                x = 8;
+                y = 8;
+                while (x > 0)
+                {
+                    string currentLine = puzzleReader.ReadLine();
+                    y = 8;
+                    foreach (char c in currentLine)
+                    {
+                        if (char.IsNumber(c))
+                        {
+                            // Place the number into the first value of the array
+                            ActiveGameState.ArrPuzzleSolution[x, y] = (int) char.GetNumericValue(c);
+                            // After char is read, increment the y variable
+                            y--;
+                        }
+                    }
+
+                    // After Line is read, increment the x variable
+                    x--;
+                }
+            }
+            else if (rotateValue == 5)
+            {
+                x = 0;
+                y = 0;
+                while (y < 9)
+                {
+                    string currentLine = puzzleReader.ReadLine();
+                    x = 0;
+                    foreach (char c in currentLine)
+                    {
+                        if (char.IsNumber(c))
+                        {
+                            // Place the number into the first value of the array
+                            ActiveGameState.ArrPuzzleSolution[x, y] = (int)char.GetNumericValue(c);
+                            // After char is read, increment the y variable
+                            x++;
+                        }
+                    }
+
+                    // After Line is read, increment the x variable
+                    y++;
+                }
+            }
+            else if (rotateValue == 6)
+            {
+                x = 0;
+                y = 8;
+                while (y > 0)
+                {
+                    string currentLine = puzzleReader.ReadLine();
+                    x = 0;
+                    foreach (char c in currentLine)
+                    {
+                        if (char.IsNumber(c))
+                        {
+                            // Place the number into the first value of the array
+                            ActiveGameState.ArrPuzzleSolution[x, y] = (int)char.GetNumericValue(c);
+                            // After char is read, increment the y variable
+                            x++;
+                        }
+                    }
+
+                    // After Line is read, increment the x variable
+                    y--;
+                }
+            }
+            else if (rotateValue == 7)
+            {
+                x = 8;
+                y = 0;
+                while (y < 9)
+                {
+                    string currentLine = puzzleReader.ReadLine();
+                    x = 8;
+                    foreach (char c in currentLine)
+                    {
+                        if (char.IsNumber(c))
+                        {
+                            // Place the number into the first value of the array
+                            ActiveGameState.ArrPuzzleSolution[x, y] = (int)char.GetNumericValue(c);
+                            // After char is read, increment the y variable
+                            x--;
+                        }
+                    }
+
+                    // After Line is read, increment the x variable
+                    y++;
+                }
+            }
+            else if (rotateValue == 8)
+            {
+                x = 8;
+                y = 8;
+                while (y > 0)
+                {
+                    string currentLine = puzzleReader.ReadLine();
+                    x = 8;
+                    foreach (char c in currentLine)
+                    {
+                        if (char.IsNumber(c))
+                        {
+                            // Place the number into the first value of the array
+                            ActiveGameState.ArrPuzzleSolution[x, y] = (int)char.GetNumericValue(c);
+                            // After char is read, increment the y variable
+                            x--;
+                        }
+                    }
+
+                    // After Line is read, increment the x variable
+                    y--;
+                }
             }
         }
     }
