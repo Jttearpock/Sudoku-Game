@@ -59,5 +59,20 @@ namespace SudokuGame
             get { return _onGoingGame; }
             set { _onGoingGame = value; }
         }
+
+        private string _difficultyLevel;
+        public string DifficultyLevel
+        {
+            get { return _difficultyLevel; }
+            set { _difficultyLevel = value;}
+        }
+
+        private int _startNumbers;
+
+        public int StartNumbers
+        {
+            get { return _startNumbers; }
+            set { _startNumbers = value; }
+        }
     }
 }

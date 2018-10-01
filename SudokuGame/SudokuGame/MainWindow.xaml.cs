@@ -51,11 +51,13 @@ namespace SudokuGame
             {
                 if (MessageBox.Show("Start new game?", "Confirm", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                 {
+                    SetDifficulty();
                     CreatePuzzle();
                 }
             }
             else
             {
+                SetDifficulty();
                 CreatePuzzle();
             }
         }
@@ -134,7 +136,7 @@ namespace SudokuGame
                             // After char is read, increment the y variable
                             y++;
                         }
-                    }              
+                    }
                     // After Line is read, increment the x variable
                     x++;
                 }
@@ -294,14 +296,49 @@ namespace SudokuGame
                 }
             }
         }
+       
+        /// <summary>
+        /// Find and set difficulty level based on selected radio button
+        /// </summary>
+        public void SetDifficulty()
+        {
+            if (easyDiffRadio.IsChecked == true)
+            {
+                activeGameState.DifficultyLevel = "Easy";
+                activeGameState.StartNumbers = 32;
+            }
+            else if (mediumDiffRadio.IsChecked == true)
+            {
+                activeGameState.DifficultyLevel = "Medium";
+                activeGameState.StartNumbers = 30;
+            }
+            else if (hardDiffRadio.IsChecked == true)
+            {
+                activeGameState.DifficultyLevel = "Hard";
+                activeGameState.StartNumbers = 27;
+            }
+            else if (expertDiffRadio.IsChecked == true)
+            {
+                activeGameState.DifficultyLevel = "Expert";
+                activeGameState.StartNumbers = 24;
+            }
+            puzzleLabel.Content = activeGameState.DifficultyLevel + " Puzzle";
+        }
 
+        /// <summary>
+        /// Randomly generate the starting numbers in the base array
+        /// </summary>
+        public void SetBasePuzzle()
+        {
+
+        }
 
         /// <summary>
         /// Method for resetting the current puzzle to it's beginning state
         /// </summary>
         public void RestartPuzzle()
         {
-            activeGameState.ArrPuzzleCurrent = new string[9,9];
+            activeGameState.ArrPuzzleCurrent = new string[9, 9];
             int y;
             for (int x = 0; x < 9; x++)
             {
