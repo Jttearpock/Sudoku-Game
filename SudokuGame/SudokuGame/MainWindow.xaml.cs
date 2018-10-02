@@ -4,8 +4,6 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-using System.Collections.ObjectModel;
-
 namespace SudokuGame
 {
     using System;
@@ -24,6 +22,8 @@ namespace SudokuGame
     using System.Windows.Media.Imaging;
     using System.Windows.Navigation;
     using System.Windows.Shapes;
+    using System.Collections;
+    using System.Collections.ObjectModel;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -50,10 +50,118 @@ namespace SudokuGame
         {
             CreatePuzzle();
             SetDifficulty();
-            // SetBasePuzzle();
             SetPuzzleStart();
+            SetGameBoard();
         }
 
+        public void SetGameBoard()
+        {
+            int y;
+            for (int x = 0; x < 9; x++)
+            {
+                y = 0;
+                while (y < 9)
+                {
+                    if (activeGameState.ArrPuzzleCurrent[x, y] == null)
+                    {
+                        activeGameState.ArrPuzzleCurrent[x, y] = "";
+                    }
+                    y++;
+                }
+            }
+            Cell00.Text = activeGameState.ArrPuzzleCurrent[0, 0];
+            // Test code
+            // if (Cell00.Text != "")
+            // {
+            //    Cell00.FontWeight = FontWeights.Bold;
+            //    Cell00.IsHitTestVisible = false;
+            //    Cell00.Focusable = false;              
+            // }
+            Cell01.Text = activeGameState.ArrPuzzleCurrent[0, 1];
+            Cell02.Text = activeGameState.ArrPuzzleCurrent[0, 2];
+            Cell03.Text = activeGameState.ArrPuzzleCurrent[0, 3];
+            Cell04.Text = activeGameState.ArrPuzzleCurrent[0, 4];
+            Cell05.Text = activeGameState.ArrPuzzleCurrent[0, 5];
+            Cell06.Text = activeGameState.ArrPuzzleCurrent[0, 6];
+            Cell07.Text = activeGameState.ArrPuzzleCurrent[0, 7];
+            Cell08.Text = activeGameState.ArrPuzzleCurrent[0, 8];
+            Cell10.Text = activeGameState.ArrPuzzleCurrent[1, 0];
+            Cell11.Text = activeGameState.ArrPuzzleCurrent[1, 1];
+            Cell12.Text = activeGameState.ArrPuzzleCurrent[1, 2];
+            Cell13.Text = activeGameState.ArrPuzzleCurrent[1, 3];
+            Cell14.Text = activeGameState.ArrPuzzleCurrent[1, 4];
+            Cell15.Text = activeGameState.ArrPuzzleCurrent[1, 5];
+            Cell16.Text = activeGameState.ArrPuzzleCurrent[1, 6];
+            Cell17.Text = activeGameState.ArrPuzzleCurrent[1, 7];
+            Cell18.Text = activeGameState.ArrPuzzleCurrent[1, 8];
+            Cell20.Text = activeGameState.ArrPuzzleCurrent[2, 0];
+            Cell21.Text = activeGameState.ArrPuzzleCurrent[2, 1];
+            Cell22.Text = activeGameState.ArrPuzzleCurrent[2, 2];
+            Cell23.Text = activeGameState.ArrPuzzleCurrent[2, 3];
+            Cell24.Text = activeGameState.ArrPuzzleCurrent[2, 4];
+            Cell25.Text = activeGameState.ArrPuzzleCurrent[2, 5];
+            Cell26.Text = activeGameState.ArrPuzzleCurrent[2, 6];
+            Cell27.Text = activeGameState.ArrPuzzleCurrent[2, 7];
+            Cell28.Text = activeGameState.ArrPuzzleCurrent[2, 8];
+            Cell30.Text = activeGameState.ArrPuzzleCurrent[3, 0];
+            Cell31.Text = activeGameState.ArrPuzzleCurrent[3, 1];
+            Cell32.Text = activeGameState.ArrPuzzleCurrent[3, 2];
+            Cell33.Text = activeGameState.ArrPuzzleCurrent[3, 3];
+            Cell34.Text = activeGameState.ArrPuzzleCurrent[3, 4];
+            Cell35.Text = activeGameState.ArrPuzzleCurrent[3, 5];
+            Cell36.Text = activeGameState.ArrPuzzleCurrent[3, 6];
+            Cell37.Text = activeGameState.ArrPuzzleCurrent[3, 7];
+            Cell38.Text = activeGameState.ArrPuzzleCurrent[3, 8];
+            Cell40.Text = activeGameState.ArrPuzzleCurrent[4, 0];
+            Cell41.Text = activeGameState.ArrPuzzleCurrent[4, 1];
+            Cell42.Text = activeGameState.ArrPuzzleCurrent[4, 2];
+            Cell43.Text = activeGameState.ArrPuzzleCurrent[4, 3];
+            Cell44.Text = activeGameState.ArrPuzzleCurrent[4, 4];
+            Cell45.Text = activeGameState.ArrPuzzleCurrent[4, 5];
+            Cell46.Text = activeGameState.ArrPuzzleCurrent[4, 6];
+            Cell47.Text = activeGameState.ArrPuzzleCurrent[4, 7];
+            Cell48.Text = activeGameState.ArrPuzzleCurrent[4, 8];
+            Cell50.Text = activeGameState.ArrPuzzleCurrent[5, 0];
+            Cell51.Text = activeGameState.ArrPuzzleCurrent[5, 1];
+            Cell52.Text = activeGameState.ArrPuzzleCurrent[5, 2];
+            Cell53.Text = activeGameState.ArrPuzzleCurrent[5, 3];
+            Cell54.Text = activeGameState.ArrPuzzleCurrent[5, 4];
+            Cell55.Text = activeGameState.ArrPuzzleCurrent[5, 5];
+            Cell56.Text = activeGameState.ArrPuzzleCurrent[5, 6];
+            Cell57.Text = activeGameState.ArrPuzzleCurrent[5, 7];
+            Cell58.Text = activeGameState.ArrPuzzleCurrent[5, 8];
+            Cell60.Text = activeGameState.ArrPuzzleCurrent[6, 0];
+            Cell61.Text = activeGameState.ArrPuzzleCurrent[6, 1];
+            Cell62.Text = activeGameState.ArrPuzzleCurrent[6, 2];
+            Cell63.Text = activeGameState.ArrPuzzleCurrent[6, 3];
+            Cell64.Text = activeGameState.ArrPuzzleCurrent[6, 4];
+            Cell65.Text = activeGameState.ArrPuzzleCurrent[6, 5];
+            Cell66.Text = activeGameState.ArrPuzzleCurrent[6, 6];
+            Cell67.Text = activeGameState.ArrPuzzleCurrent[6, 7];
+            Cell68.Text = activeGameState.ArrPuzzleCurrent[6, 8];
+            Cell70.Text = activeGameState.ArrPuzzleCurrent[7, 0];
+            Cell71.Text = activeGameState.ArrPuzzleCurrent[7, 1];
+            Cell72.Text = activeGameState.ArrPuzzleCurrent[7, 2];
+            Cell73.Text = activeGameState.ArrPuzzleCurrent[7, 3];
+            Cell74.Text = activeGameState.ArrPuzzleCurrent[7, 4];
+            Cell75.Text = activeGameState.ArrPuzzleCurrent[7, 5];
+            Cell76.Text = activeGameState.ArrPuzzleCurrent[7, 6];
+            Cell77.Text = activeGameState.ArrPuzzleCurrent[7, 7];
+            Cell78.Text = activeGameState.ArrPuzzleCurrent[7, 8];
+            Cell80.Text = activeGameState.ArrPuzzleCurrent[8, 0];
+            Cell81.Text = activeGameState.ArrPuzzleCurrent[8, 1];
+            Cell82.Text = activeGameState.ArrPuzzleCurrent[8, 2];
+            Cell83.Text = activeGameState.ArrPuzzleCurrent[8, 3];
+            Cell84.Text = activeGameState.ArrPuzzleCurrent[8, 4];
+            Cell85.Text = activeGameState.ArrPuzzleCurrent[8, 5];
+            Cell86.Text = activeGameState.ArrPuzzleCurrent[8, 6];
+            Cell87.Text = activeGameState.ArrPuzzleCurrent[8, 7];
+            Cell88.Text = activeGameState.ArrPuzzleCurrent[8, 8];
+
+
+
+
+        }
 
         /// <summary>
         /// Method for Creating the Puzzle and filling the arrays with game data
@@ -319,44 +427,6 @@ namespace SudokuGame
             puzzleLabel.Content = activeGameState.DifficultyLevel + " Puzzle";
         }
 
-        /// <summary>
-        /// Randomly generate the starting numbers in the base array
-        /// </summary>
-        public void SetBasePuzzle()
-        {
-            int counter = activeGameState.StartNumbers;
-            int y;
-            for (int x = 0; x < 9; x++)
-            {
-                y = 0;
-
-                // For easy difficulty
-                while (y < 32)
-                {
-                    activeGameState.ArrPuzzleBase[x, y] = activeGameState.ArrPuzzleBase[x, y];
-                    y++;
-                }
-                // For medium difficulty
-                while (y < 30)
-                {
-                    activeGameState.ArrPuzzleBase[x, y] = activeGameState.ArrPuzzleBase[x, y];
-                    y++;
-                }
-                // For hard difficulty
-                while (y < 27)
-                {
-                    activeGameState.ArrPuzzleBase[x, y] = activeGameState.ArrPuzzleBase[x, y];
-                    y++;
-                }
-                // For expert difficulty
-                while (y < 24)
-                {
-                    activeGameState.ArrPuzzleBase[x, y] = activeGameState.ArrPuzzleBase[x, y];
-                    y++;
-                }
-            }
-        }
-
         public void SetPuzzleStart()
         {
             int startNum = activeGameState.StartNumbers;
@@ -404,6 +474,7 @@ namespace SudokuGame
                 if (MessageBox.Show("Restart current puzzle?", "Confirm", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                 {
                     RestartPuzzle();
+                    SetGameBoard();
                 }
             }
         }
@@ -437,5 +508,6 @@ namespace SudokuGame
                 Close();
             }
         }
+       
     }
 }
