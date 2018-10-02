@@ -8,6 +8,9 @@
 
 //-----------------------------------------------------------------------
 
+using System.Collections.ObjectModel;
+using System.Windows.Controls;
+
 namespace SudokuGame
 {
     using System;
@@ -60,6 +63,9 @@ namespace SudokuGame
             set { _onGoingGame = value; }
         }
 
+        /// <summary>
+        /// String that holds the difficulty level of the current game
+        /// </summary>
         private string _difficultyLevel;
         public string DifficultyLevel
         {
@@ -67,8 +73,10 @@ namespace SudokuGame
             set { _difficultyLevel = value;}
         }
 
+        /// <summary>
+        /// Int that holds the amount of starting numbers
+        /// </summary>
         private int _startNumbers;
-
         public int StartNumbers
         {
             get { return _startNumbers; }

@@ -4,6 +4,8 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System.Collections.ObjectModel;
+
 namespace SudokuGame
 {
     using System;
@@ -42,31 +44,23 @@ namespace SudokuGame
         }
 
         /// <summary>
-        /// Click event that starts a new puzzle with confirmation check
-        /// Doesn't seek confirmation if no game has been started
+        /// Total set of methods for puzzle creation
         /// </summary>
-        private void NewGameButton_Click(object sender, RoutedEventArgs e)
+        public void CreateNewGame()
         {
-            if (activeGameState.OnGoingGame == true)
-            {
-                if (MessageBox.Show("Start new game?", "Confirm", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
-                {
-                    SetDifficulty();
-                    CreatePuzzle();
-                }
-            }
-            else
-            {
-                SetDifficulty();
-                CreatePuzzle();
-            }
+            CreatePuzzle();
+            SetDifficulty();
+            // SetBasePuzzle();
+            SetPuzzleStart();
         }
+
 
         /// <summary>
         /// Method for Creating the Puzzle and filling the arrays with game data
         /// </summary>
         public void CreatePuzzle()
         {
+            activeGameState = new GameState();
             activeGameState.OnGoingGame = true;
             activeGameState.ArrPuzzleSolution = new string[9, 9];
             activeGameState.ArrPuzzleBase = new string[9, 9];
@@ -84,9 +78,9 @@ namespace SudokuGame
             // Randomly choose a puzzle based on how many there are in the text file
             // Summary
             Random selectPuzzle = new Random();
-            // int puzzleNumber = selectPuzzle.Next(1, numOfPuzzles);
+            int puzzleNumber = selectPuzzle.Next(1, numOfPuzzles);
             // Code for testing specific Puzzle selection
-            int puzzleNumber = 3;
+            //int puzzleNumber = 3;
 
             // Summary
             // Declare the variables for importing the puzzle
@@ -296,7 +290,7 @@ namespace SudokuGame
                 }
             }
         }
-       
+
         /// <summary>
         /// Find and set difficulty level based on selected radio button
         /// </summary>
@@ -330,7 +324,56 @@ namespace SudokuGame
         /// </summary>
         public void SetBasePuzzle()
         {
+            int counter = activeGameState.StartNumbers;
+            int y;
+            for (int x = 0; x < 9; x++)
+            {
+                y = 0;
 
+                // For easy difficulty
+                while (y < 32)
+                {
+                    activeGameState.ArrPuzzleBase[x, y] = activeGameState.ArrPuzzleBase[x, y];
+                    y++;
+                }
+                // For medium difficulty
+                while (y < 30)
+                {
+                    activeGameState.ArrPuzzleBase[x, y] = activeGameState.ArrPuzzleBase[x, y];
+                    y++;
+                }
+                // For hard difficulty
+                while (y < 27)
+                {
+                    activeGameState.ArrPuzzleBase[x, y] = activeGameState.ArrPuzzleBase[x, y];
+                    y++;
+                }
+                // For expert difficulty
+                while (y < 24)
+                {
+                    activeGameState.ArrPuzzleBase[x, y] = activeGameState.ArrPuzzleBase[x, y];
+                    y++;
+                }
+            }
+        }
+
+        public void SetPuzzleStart()
+        {
+            int startNum = activeGameState.StartNumbers;
+            int i = 0;
+            Random randomNum = new Random();
+
+            while (i < startNum)
+            {
+                int x = randomNum.Next(0, 8);
+                int y = randomNum.Next(0, 8);
+                if (activeGameState.ArrPuzzleBase[x, y] == null)
+                {
+                    activeGameState.ArrPuzzleBase[x, y] = activeGameState.ArrPuzzleSolution[x, y];
+                    activeGameState.ArrPuzzleCurrent[x, y] = activeGameState.ArrPuzzleSolution[x, y];
+                    i++;
+                }
+            }
         }
 
         /// <summary>
@@ -350,6 +393,7 @@ namespace SudokuGame
                 }
             }
         }
+
         /// <summary>
         /// Click event that resets puzzle with confirmation check
         /// </summary>
@@ -362,8 +406,27 @@ namespace SudokuGame
                     RestartPuzzle();
                 }
             }
-
         }
+
+        /// <summary>
+        /// Click event that starts a new puzzle with confirmation check
+        /// Doesn't seek confirmation if no game has been started
+        /// </summary>
+        private void NewGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (activeGameState.OnGoingGame == true)
+            {
+                if (MessageBox.Show("Start new game?", "Confirm", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                {
+                    CreateNewGame();
+                }
+            }
+            else
+            {
+                CreateNewGame();
+            }
+        }
+
         /// <summary>
         /// Click event that exits program with confirmation check
         /// </summary>

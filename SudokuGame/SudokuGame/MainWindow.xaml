@@ -5,19 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SudokuGame"
         mc:Ignorable="d"
-        Title="Sudoku" Height="350" Width="525">
-    <Grid>
+        Title="Sudoku" Height="379.412" Width="525">
+    <Grid x:Name="DefaultGrid" Margin="0,0,-8,1">
         <Button x:Name="NewGameButton" Content="New Game" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Click="NewGameButton_Click"/>
         <Button x:Name="RestartButton" Content="Restart" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="90" Click="RestartButton_Click"/>
         <Button x:Name="ExitButton" Content="Exit" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="90" Click="ExitButton_Click"/>
-        <Menu x:Name="difficultyMenu" HorizontalAlignment="Left" Height="100" Margin="10,85,0,0" VerticalAlignment="Top" Width="90" BorderThickness="1" BorderBrush="Black">
+        <Menu x:Name="difficultyMenu" HorizontalAlignment="Left" Height="100" Margin="10,85,0,0" VerticalAlignment="Top" Width="90" BorderThickness="1" BorderBrush="Black" Focusable="False">
             <MenuItem Header="Difficulty" HorizontalAlignment="Center" VerticalAlignment="Center" Width="90" Focusable="False" IsTabStop="False" IsHitTestVisible="False"/>
-            <RadioButton x:Name="easyDiffRadio" Content="Easy" IsChecked="True"/>
-            <RadioButton x:Name="mediumDiffRadio" Content="Medium"/>
-            <RadioButton x:Name="hardDiffRadio" Content="Hard"/>
-            <RadioButton x:Name="expertDiffRadio" Content="Expert"/>
+            <RadioButton x:Name="easyDiffRadio" Content="Easy" IsChecked="True" Focusable="False"/>
+            <RadioButton x:Name="mediumDiffRadio" Content="Medium" Focusable="False"/>
+            <RadioButton x:Name="hardDiffRadio" Content="Hard" Focusable="False"/>
+            <RadioButton x:Name="expertDiffRadio" Content="Expert" Focusable="False"/>
         </Menu>
         <Label x:Name="puzzleLabel" Content="" HorizontalAlignment="Left" Margin="48,190,0,0" VerticalAlignment="Top"/>
-
     </Grid>
 </Window>
