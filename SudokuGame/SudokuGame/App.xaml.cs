@@ -1,11 +1,7 @@
 ﻿//-----------------------------------------------------------------------
-
 // <copyright file="App.xaml.cs" company="CompanyName">
-
-// Company copyright tag.
-
+//     Company copyright tag.
 // </copyright>
-
 //-----------------------------------------------------------------------
 
 namespace SudokuGame
