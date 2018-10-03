@@ -269,6 +269,11 @@ namespace SudokuGame
             }
         }
 
+        public void TestMethod()
+        {
+            //testing stuff
+        }
+
         /// <summary>
         /// Find and set difficulty level based on selected radio button
         /// </summary>
