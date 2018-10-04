@@ -327,9 +327,9 @@ namespace SudokuGame
 
                     // If there is a starting value
                     // Set value and lock cell
-                    if (this.activeGameState.ArrPuzzleCurrent[x, y] != null)
+                    if (!string.IsNullOrWhiteSpace(this.activeGameState.ArrPuzzleCurrent[x, y]))
                     {
-                        if (this.activeGameState.ArrPuzzleBase[x, y] != null)
+                        if (!string.IsNullOrWhiteSpace(this.activeGameState.ArrPuzzleBase[x, y]))
                         {
                             currentCell.Text = this.activeGameState.ArrPuzzleCurrent[x, y];
                             currentCell.FontWeight = FontWeights.Bold;
