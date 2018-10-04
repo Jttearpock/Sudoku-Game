@@ -301,7 +301,7 @@ namespace SudokuGame
             {
                 int x = randomNum.Next(0, 8);
                 int y = randomNum.Next(0, 8);
-                if (this.activeGameState.ArrPuzzleBase[x, y] == null)
+                if (string.IsNullOrWhiteSpace(this.activeGameState.ArrPuzzleBase[x, y]))
                 {
                     this.activeGameState.ArrPuzzleBase[x, y] = this.activeGameState.ArrPuzzleSolution[x, y];
                     this.activeGameState.ArrPuzzleCurrent[x, y] = this.activeGameState.ArrPuzzleSolution[x, y];
@@ -312,6 +312,7 @@ namespace SudokuGame
 
         /// <summary>
         /// Method for setting the game board Cells equal to the current game array
+        /// Also assigns correct settings & event handlers to each Cell
         /// </summary>
         public void SetGameBoard()
         {
@@ -381,7 +382,7 @@ namespace SudokuGame
         /// <summary>
         /// Method for loading saved game from text file
         /// </summary>
-        public void LoadGame()
+        public void OpenGameFile()
         {
             OpenFileDialog loadGameDialog = new OpenFileDialog();
             loadGameDialog.InitialDirectory = "C:\\";
@@ -390,68 +391,85 @@ namespace SudokuGame
 
             if (loadGameDialog.ShowDialog() == true)
             {
-                StreamReader savedGame = File.OpenText(loadGameDialog.FileName);
-                this.activeGameState = new GameState();
-                this.activeGameState.OnGoingGame = true;
-                this.activeGameState.ArrPuzzleSolution = new string[9, 9];
-                this.activeGameState.ArrPuzzleBase = new string[9, 9];
-                this.activeGameState.ArrPuzzleCurrent = new string[9, 9];               
-                this.activeGameState.DifficultyLevel = savedGame.ReadLine();
-                puzzleLabel.Content = this.activeGameState.DifficultyLevel + " Puzzle";
-
-                while (savedGame.EndOfStream == false)
+                int totalLines = File.ReadLines(loadGameDialog.FileName).Count(line => !string.IsNullOrWhiteSpace(line));
+                if (totalLines != 28)
                 {
-                    //Read Solution Puzzle from file
-                    int y;
-                    for (int x = 0; x < 9; x++)
+                    if (MessageBox.Show("This file appears to be an incorrect format.  Errors may occur. Load anyways?",
+                            "Confirm", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                     {
-                        string currentLine = savedGame.ReadLine();
-                        y = 0;
-                        foreach (char c in currentLine)
+                        LoadGameFile(loadGameDialog.FileName);
+                    }
+                }
+                else
+                {
+                    LoadGameFile(loadGameDialog.FileName);
+                }
+            }
+        }
+
+        public void LoadGameFile(string fileLocation)
+        {
+            StreamReader savedGame = File.OpenText(fileLocation);
+            this.activeGameState = new GameState();
+            this.activeGameState.OnGoingGame = true;
+            this.activeGameState.ArrPuzzleSolution = new string[9, 9];
+            this.activeGameState.ArrPuzzleBase = new string[9, 9];
+            this.activeGameState.ArrPuzzleCurrent = new string[9, 9];
+            this.activeGameState.DifficultyLevel = savedGame.ReadLine();
+            puzzleLabel.Content = this.activeGameState.DifficultyLevel + " Puzzle";
+
+            while (savedGame.EndOfStream == false)
+            {
+                //Read Solution Puzzle from file
+                int y;
+                for (int x = 0; x < 9; x++)
+                {
+                    string currentLine = savedGame.ReadLine();
+                    y = 0;
+                    foreach (char c in currentLine)
+                    {
+                        if (char.IsNumber(c))
                         {
-                            if (char.IsNumber(c))
-                            {
-                                this.activeGameState.ArrPuzzleSolution[x, y] = c.ToString();
-                                y++;
-                            }
+                            this.activeGameState.ArrPuzzleSolution[x, y] = c.ToString();
+                            y++;
                         }
                     }
-                    //Read Base Puzzle from file
-                    for (int x = 0; x < 9; x++)
+                }
+                //Read Base Puzzle from file
+                for (int x = 0; x < 9; x++)
+                {
+                    string currentLine = savedGame.ReadLine();
+                    y = 0;
+                    foreach (char c in currentLine)
                     {
-                        string currentLine = savedGame.ReadLine();
-                        y = 0;
-                        foreach (char c in currentLine)
+                        if (char.IsNumber(c))
                         {
-                            if (char.IsNumber(c))
-                            {
-                                this.activeGameState.ArrPuzzleBase[x, y] = c.ToString();
-                                y++;
-                            }
-                            else
-                            {
-                                this.activeGameState.ArrPuzzleBase[x, y] = String.Empty;
-                                y++;
-                            }
+                            this.activeGameState.ArrPuzzleBase[x, y] = c.ToString();
+                            y++;
+                        }
+                        else
+                        {
+                            this.activeGameState.ArrPuzzleBase[x, y] = String.Empty;
+                            y++;
                         }
                     }
-                    //Read Current Puzzle from file
-                    for (int x = 0; x < 9; x++)
+                }
+                //Read Current Puzzle from file
+                for (int x = 0; x < 9; x++)
+                {
+                    string currentLine = savedGame.ReadLine();
+                    y = 0;
+                    foreach (char c in currentLine)
                     {
-                        string currentLine = savedGame.ReadLine();
-                        y = 0;
-                        foreach (char c in currentLine)
+                        if (char.IsNumber(c))
                         {
-                            if (char.IsNumber(c))
-                            {
-                                this.activeGameState.ArrPuzzleCurrent[x, y] = c.ToString();
-                                y++;
-                            }
-                            else
-                            {
-                                this.activeGameState.ArrPuzzleCurrent[x, y] = String.Empty;
-                                y++;
-                            }
+                            this.activeGameState.ArrPuzzleCurrent[x, y] = c.ToString();
+                            y++;
+                        }
+                        else
+                        {
+                            this.activeGameState.ArrPuzzleCurrent[x, y] = String.Empty;
+                            y++;
                         }
                     }
                 }
@@ -569,8 +587,7 @@ namespace SudokuGame
         }
 
         /// <summary>
-        /// Method to handle text input
-        /// Unused at this point
+        /// Method to validate text input & add it to Current Array
         /// </summary>
         /// <param name="sender">The object that initiated the event.</param>
         /// <param name="e">The event arguments for the event.</param> 
@@ -598,7 +615,7 @@ namespace SudokuGame
         /// <param name="e">The event arguments for the event.</param> 
         private void LoadGameButton_Click(object sender, RoutedEventArgs e)
         {
-            LoadGame();
+            OpenGameFile();
             SetGameBoard();
         }
 
@@ -609,7 +626,10 @@ namespace SudokuGame
         /// <param name="e">The event arguments for the event.</param> 
         private void SaveGameButton_Click(object sender, RoutedEventArgs e)
         {
-            SaveGame();
+            if (this.activeGameState.OnGoingGame == true)
+            {
+                SaveGame();
+            }
         }
     }
 }
