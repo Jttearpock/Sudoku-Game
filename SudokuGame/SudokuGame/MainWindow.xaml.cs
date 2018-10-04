@@ -6,24 +6,13 @@
 
 namespace SudokuGame
 {
+    using Microsoft.Win32;
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.IO;
     using System.Linq;
-    using System.Security.Cryptography;
-    using System.Text;
-    using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Data;
-    using System.Windows.Documents;
-    using System.Windows.Input;
-    using System.Windows.Media;
-    using System.Windows.Media.Imaging;
-    using System.Windows.Navigation;
-    using System.Windows.Shapes;
+
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -105,7 +94,8 @@ namespace SudokuGame
             // Randomly choose how to rotate the chosen puzzle
             // Summary
             Random puzzleRotation = new Random();
-            int rotateValue = puzzleRotation.Next(1, 8);
+            //int rotateValue = puzzleRotation.Next(1, 8);
+            int rotateValue = 3;
 
             if (rotateValue == 1)
             {
@@ -151,7 +141,7 @@ namespace SudokuGame
             {
                 x = 8;
                 y = 0;
-                while (x > 0)
+                while (x > -1)
                 {
                     string currentLine = puzzleReader.ReadLine();
                     y = 0;
@@ -171,7 +161,7 @@ namespace SudokuGame
             {
                 x = 8;
                 y = 8;
-                while (x > 0)
+                while (x > -1)
                 {
                     string currentLine = puzzleReader.ReadLine();
                     y = 8;
@@ -211,7 +201,7 @@ namespace SudokuGame
             {
                 x = 0;
                 y = 8;
-                while (y > 0)
+                while (y > -1)
                 {
                     string currentLine = puzzleReader.ReadLine();
                     x = 0;
@@ -251,7 +241,7 @@ namespace SudokuGame
             {
                 x = 8;
                 y = 8;
-                while (y > 0)
+                while (y > -1)
                 {
                     string currentLine = puzzleReader.ReadLine();
                     x = 8;
@@ -317,7 +307,7 @@ namespace SudokuGame
                     this.activeGameState.ArrPuzzleCurrent[x, y] = this.activeGameState.ArrPuzzleSolution[x, y];
                     i++;
                 }
-            }           
+            }
         }
 
         /// <summary>
@@ -339,9 +329,22 @@ namespace SudokuGame
                     // Set value and lock cell
                     if (this.activeGameState.ArrPuzzleCurrent[x, y] != null)
                     {
-                        currentCell.Text = this.activeGameState.ArrPuzzleCurrent[x, y];
-                        currentCell.FontWeight = FontWeights.Bold;
-                        currentCell.IsReadOnly = true;
+                        if (this.activeGameState.ArrPuzzleBase[x, y] != null)
+                        {
+                            currentCell.Text = this.activeGameState.ArrPuzzleCurrent[x, y];
+                            currentCell.FontWeight = FontWeights.Bold;
+                            currentCell.IsReadOnly = true;
+                            currentCell.Focusable = true;
+                            currentCell.TextChanged += GameCellTextChange;
+                        }
+                        else
+                        {
+                            currentCell.Text = this.activeGameState.ArrPuzzleCurrent[x, y];
+                            currentCell.IsReadOnly = false;
+                            currentCell.Focusable = true;
+                            currentCell.FontWeight = FontWeights.Normal;
+                            currentCell.TextChanged += GameCellTextChange;
+                        }
                     }
                     else
                     {
@@ -349,100 +352,13 @@ namespace SudokuGame
                         currentCell.IsReadOnly = false;
                         currentCell.Focusable = true;
                         currentCell.FontWeight = FontWeights.Normal;
-                    } 
-                                                          
+                        currentCell.TextChanged += GameCellTextChange;
+                    }
+
                     y++;
                 }
-            }        
+            }
         }
-
-        /// <summary>
-        /// Legacy method for setting game board cells
-        /// </summary>
-       ////public void SetGameBoardOld()
-       ////{
-       ////    Cell00.Text = activeGameState.ArrPuzzleCurrent[0, 0];
-       ////    Cell01.Text = activeGameState.ArrPuzzleCurrent[0, 1];
-       ////    Cell02.Text = activeGameState.ArrPuzzleCurrent[0, 2];
-       ////    Cell03.Text = activeGameState.ArrPuzzleCurrent[0, 3];
-       ////    Cell04.Text = activeGameState.ArrPuzzleCurrent[0, 4];
-       ////    Cell05.Text = activeGameState.ArrPuzzleCurrent[0, 5];
-       ////    Cell06.Text = activeGameState.ArrPuzzleCurrent[0, 6];
-       ////    Cell07.Text = activeGameState.ArrPuzzleCurrent[0, 7];
-       ////    Cell08.Text = activeGameState.ArrPuzzleCurrent[0, 8];
-       ////    Cell10.Text = activeGameState.ArrPuzzleCurrent[1, 0];
-       ////    Cell11.Text = activeGameState.ArrPuzzleCurrent[1, 1];
-       ////    Cell12.Text = activeGameState.ArrPuzzleCurrent[1, 2];
-       ////    Cell13.Text = activeGameState.ArrPuzzleCurrent[1, 3];
-       ////    Cell14.Text = activeGameState.ArrPuzzleCurrent[1, 4];
-       ////    Cell15.Text = activeGameState.ArrPuzzleCurrent[1, 5];
-       ////    Cell16.Text = activeGameState.ArrPuzzleCurrent[1, 6];
-       ////    Cell17.Text = activeGameState.ArrPuzzleCurrent[1, 7];
-       ////    Cell18.Text = activeGameState.ArrPuzzleCurrent[1, 8];
-       ////    Cell20.Text = activeGameState.ArrPuzzleCurrent[2, 0];
-       ////    Cell21.Text = activeGameState.ArrPuzzleCurrent[2, 1];
-       ////    Cell22.Text = activeGameState.ArrPuzzleCurrent[2, 2];
-       ////    Cell23.Text = activeGameState.ArrPuzzleCurrent[2, 3];
-       ////    Cell24.Text = activeGameState.ArrPuzzleCurrent[2, 4];
-       ////    Cell25.Text = activeGameState.ArrPuzzleCurrent[2, 5];
-       ////    Cell26.Text = activeGameState.ArrPuzzleCurrent[2, 6];
-       ////    Cell27.Text = activeGameState.ArrPuzzleCurrent[2, 7];
-       ////    Cell28.Text = activeGameState.ArrPuzzleCurrent[2, 8];
-       ////    Cell30.Text = activeGameState.ArrPuzzleCurrent[3, 0];
-       ////    Cell31.Text = activeGameState.ArrPuzzleCurrent[3, 1];
-       ////    Cell32.Text = activeGameState.ArrPuzzleCurrent[3, 2];
-       ////    Cell33.Text = activeGameState.ArrPuzzleCurrent[3, 3];
-       ////    Cell34.Text = activeGameState.ArrPuzzleCurrent[3, 4];
-       ////    Cell35.Text = activeGameState.ArrPuzzleCurrent[3, 5];
-       ////    Cell36.Text = activeGameState.ArrPuzzleCurrent[3, 6];
-       ////    Cell37.Text = activeGameState.ArrPuzzleCurrent[3, 7];
-       ////    Cell38.Text = activeGameState.ArrPuzzleCurrent[3, 8];
-       ////    Cell40.Text = activeGameState.ArrPuzzleCurrent[4, 0];
-       ////    Cell41.Text = activeGameState.ArrPuzzleCurrent[4, 1];
-       ////    Cell42.Text = activeGameState.ArrPuzzleCurrent[4, 2];
-       ////    Cell43.Text = activeGameState.ArrPuzzleCurrent[4, 3];
-       ////    Cell44.Text = activeGameState.ArrPuzzleCurrent[4, 4];
-       ////    Cell45.Text = activeGameState.ArrPuzzleCurrent[4, 5];
-       ////    Cell46.Text = activeGameState.ArrPuzzleCurrent[4, 6];
-       ////    Cell47.Text = activeGameState.ArrPuzzleCurrent[4, 7];
-       ////    Cell48.Text = activeGameState.ArrPuzzleCurrent[4, 8];
-       ////    Cell50.Text = activeGameState.ArrPuzzleCurrent[5, 0];
-       ////    Cell51.Text = activeGameState.ArrPuzzleCurrent[5, 1];
-       ////    Cell52.Text = activeGameState.ArrPuzzleCurrent[5, 2];
-       ////    Cell53.Text = activeGameState.ArrPuzzleCurrent[5, 3];
-       ////    Cell54.Text = activeGameState.ArrPuzzleCurrent[5, 4];
-       ////    Cell55.Text = activeGameState.ArrPuzzleCurrent[5, 5];
-       ////    Cell56.Text = activeGameState.ArrPuzzleCurrent[5, 6];
-       ////    Cell57.Text = activeGameState.ArrPuzzleCurrent[5, 7];
-       ////    Cell58.Text = activeGameState.ArrPuzzleCurrent[5, 8];
-       ////    Cell60.Text = activeGameState.ArrPuzzleCurrent[6, 0];
-       ////    Cell61.Text = activeGameState.ArrPuzzleCurrent[6, 1];
-       ////    Cell62.Text = activeGameState.ArrPuzzleCurrent[6, 2];
-       ////    Cell63.Text = activeGameState.ArrPuzzleCurrent[6, 3];
-       ////    Cell64.Text = activeGameState.ArrPuzzleCurrent[6, 4];
-       ////    Cell65.Text = activeGameState.ArrPuzzleCurrent[6, 5];
-       ////    Cell66.Text = activeGameState.ArrPuzzleCurrent[6, 6];
-       ////    Cell67.Text = activeGameState.ArrPuzzleCurrent[6, 7];
-       ////    Cell68.Text = activeGameState.ArrPuzzleCurrent[6, 8];
-       ////    Cell70.Text = activeGameState.ArrPuzzleCurrent[7, 0];
-       ////    Cell71.Text = activeGameState.ArrPuzzleCurrent[7, 1];
-       ////    Cell72.Text = activeGameState.ArrPuzzleCurrent[7, 2];
-       ////    Cell73.Text = activeGameState.ArrPuzzleCurrent[7, 3];
-       ////    Cell74.Text = activeGameState.ArrPuzzleCurrent[7, 4];
-       ////    Cell75.Text = activeGameState.ArrPuzzleCurrent[7, 5];
-       ////    Cell76.Text = activeGameState.ArrPuzzleCurrent[7, 6];
-       ////    Cell77.Text = activeGameState.ArrPuzzleCurrent[7, 7];
-       ////    Cell78.Text = activeGameState.ArrPuzzleCurrent[7, 8];
-       ////    Cell80.Text = activeGameState.ArrPuzzleCurrent[8, 0];
-       ////    Cell81.Text = activeGameState.ArrPuzzleCurrent[8, 1];
-       ////    Cell82.Text = activeGameState.ArrPuzzleCurrent[8, 2];
-       ////    Cell83.Text = activeGameState.ArrPuzzleCurrent[8, 3];
-       ////    Cell84.Text = activeGameState.ArrPuzzleCurrent[8, 4];
-       ////    Cell85.Text = activeGameState.ArrPuzzleCurrent[8, 5];
-       ////    Cell86.Text = activeGameState.ArrPuzzleCurrent[8, 6];
-       ////    Cell87.Text = activeGameState.ArrPuzzleCurrent[8, 7];
-       ////    Cell88.Text = activeGameState.ArrPuzzleCurrent[8, 8];
-       ////}
 
         /// <summary>
         /// Method for resetting the current puzzle to it's beginning state
@@ -459,6 +375,145 @@ namespace SudokuGame
                     this.activeGameState.ArrPuzzleCurrent[x, y] = this.activeGameState.ArrPuzzleBase[x, y];
                     y++;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Method for loading saved game from text file
+        /// </summary>
+        public void LoadGame()
+        {
+            OpenFileDialog loadGameDialog = new OpenFileDialog();
+            loadGameDialog.InitialDirectory = "C:\\";
+            loadGameDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            loadGameDialog.Multiselect = false;
+
+            if (loadGameDialog.ShowDialog() == true)
+            {
+                StreamReader savedGame = File.OpenText(loadGameDialog.FileName);
+                this.activeGameState = new GameState();
+                this.activeGameState.OnGoingGame = true;
+                this.activeGameState.ArrPuzzleSolution = new string[9, 9];
+                this.activeGameState.ArrPuzzleBase = new string[9, 9];
+                this.activeGameState.ArrPuzzleCurrent = new string[9, 9];               
+                this.activeGameState.DifficultyLevel = savedGame.ReadLine();
+                puzzleLabel.Content = this.activeGameState.DifficultyLevel + " Puzzle";
+
+                while (savedGame.EndOfStream == false)
+                {
+                    //Read Solution Puzzle from file
+                    int y;
+                    for (int x = 0; x < 9; x++)
+                    {
+                        string currentLine = savedGame.ReadLine();
+                        y = 0;
+                        foreach (char c in currentLine)
+                        {
+                            if (char.IsNumber(c))
+                            {
+                                this.activeGameState.ArrPuzzleSolution[x, y] = c.ToString();
+                                y++;
+                            }
+                        }
+                    }
+                    //Read Base Puzzle from file
+                    for (int x = 0; x < 9; x++)
+                    {
+                        string currentLine = savedGame.ReadLine();
+                        y = 0;
+                        foreach (char c in currentLine)
+                        {
+                            if (char.IsNumber(c))
+                            {
+                                this.activeGameState.ArrPuzzleBase[x, y] = c.ToString();
+                                y++;
+                            }
+                            else
+                            {
+                                this.activeGameState.ArrPuzzleBase[x, y] = String.Empty;
+                                y++;
+                            }
+                        }
+                    }
+                    //Read Current Puzzle from file
+                    for (int x = 0; x < 9; x++)
+                    {
+                        string currentLine = savedGame.ReadLine();
+                        y = 0;
+                        foreach (char c in currentLine)
+                        {
+                            if (char.IsNumber(c))
+                            {
+                                this.activeGameState.ArrPuzzleCurrent[x, y] = c.ToString();
+                                y++;
+                            }
+                            else
+                            {
+                                this.activeGameState.ArrPuzzleCurrent[x, y] = String.Empty;
+                                y++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Method for saving a game to a text file 
+        /// </summary>
+        public void SaveGame()
+        {
+            SaveFileDialog saveGameDialog = new SaveFileDialog();
+            saveGameDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            saveGameDialog.DefaultExt = ".txt";            
+            saveGameDialog.OverwritePrompt = true;
+            saveGameDialog.AddExtension = true;
+            if (saveGameDialog.ShowDialog() == true)
+            {
+                string gameData = String.Empty;
+                gameData += this.activeGameState.DifficultyLevel + "\r\n";
+                for (int x = 0; x < 9; x++)
+                {
+                    for (int y = 0; y < 9; y++)
+                    {
+                        gameData += this.activeGameState.ArrPuzzleSolution[x, y];
+                    }
+
+                    gameData += "\r\n";
+                }
+                for (int x = 0; x < 9; x++)
+                {
+                    for (int y = 0; y < 9; y++)
+                    {
+                        if (this.activeGameState.ArrPuzzleBase[x, y] != null)
+                        {
+                            gameData += this.activeGameState.ArrPuzzleBase[x, y];
+                        }
+                        else
+                        {
+                            gameData += "P"; // Placeholder character so lines remain set length
+                        }                    
+                    }
+
+                    gameData += "\r\n";
+                }
+                for (int x = 0; x < 9; x++)
+                {
+                    for (int y = 0; y < 9; y++)
+                    {
+                        if (string.IsNullOrWhiteSpace(this.activeGameState.ArrPuzzleCurrent[x, y]))
+                        {
+                            gameData += "P"; // Placeholder character so lines remain set length                            
+                        }
+                        else
+                        {
+                            gameData += this.activeGameState.ArrPuzzleCurrent[x, y];
+                        }
+                    }
+
+                    gameData += "\r\n";
+                }               
+                File.WriteAllText(saveGameDialog.FileName, gameData);
             }
         }
 
@@ -520,7 +575,41 @@ namespace SudokuGame
         /// <param name="sender">The object that initiated the event.</param>
         /// <param name="e">The event arguments for the event.</param> 
         private void GameCellTextChange(object sender, TextChangedEventArgs e)
-        {                      
+        {
+            TextBox currentCell = sender as TextBox;
+            var validInput = new string[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", ""};
+            if (validInput.Contains(currentCell.Text))
+            {
+                string cellname = currentCell.Name;
+                int x = int.Parse(cellname.Substring(4, 1));
+                int y = int.Parse(cellname.Substring(5, 1));
+                this.activeGameState.ArrPuzzleCurrent[x, y] = currentCell.Text;
+            }
+            else
+            {
+                currentCell.Text = String.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Loads game from text file of players choosing
+        /// </summary>
+        /// <param name="sender">The object that initiated the event.</param>
+        /// <param name="e">The event arguments for the event.</param> 
+        private void LoadGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoadGame();
+            SetGameBoard();
+        }
+
+        /// <summary>
+        /// Saves game to text file of players choosing
+        /// </summary>
+        /// <param name="sender">The object that initiated the event.</param>
+        /// <param name="e">The event arguments for the event.</param> 
+        private void SaveGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            SaveGame();
         }
     }
 }

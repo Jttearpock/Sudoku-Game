@@ -8,9 +8,9 @@
         Title="Sudoku" Height="379.412" Width="498">
     <Grid x:Name="DefaultGrid" Margin="0,0,-8,1">
         <Button x:Name="NewGameButton" Content="New Game" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Click="NewGameButton_Click"/>
-        <Button x:Name="RestartButton" Content="Restart" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="90" Click="RestartButton_Click"/>
-        <Button x:Name="ExitButton" Content="Exit" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="90" Click="ExitButton_Click"/>
-        <Menu x:Name="difficultyMenu" HorizontalAlignment="Left" Height="100" Margin="10,85,0,0" VerticalAlignment="Top" Width="90" BorderThickness="1" BorderBrush="Black" Focusable="False">
+        <Button x:Name="RestartButton" Content="Restart" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="90" Click="RestartButton_Click"/>
+        <Button x:Name="ExitButton" Content="Exit" HorizontalAlignment="Left" Margin="10,111,0,0" VerticalAlignment="Top" Width="90" Click="ExitButton_Click"/>
+        <Menu x:Name="difficultyMenu" HorizontalAlignment="Left" Height="100" Margin="10,136,0,0" VerticalAlignment="Top" Width="90" BorderThickness="1" BorderBrush="Black" Focusable="False">
             <MenuItem Header="Difficulty" HorizontalAlignment="Center" VerticalAlignment="Center" Width="90" Focusable="False" IsTabStop="False" IsHitTestVisible="False"/>
             <RadioButton x:Name="easyDiffRadio" Content="Easy" IsChecked="True" Focusable="False"/>
             <RadioButton x:Name="mediumDiffRadio" Content="Medium" Focusable="False"/>
@@ -18,12 +18,12 @@
             <RadioButton x:Name="expertDiffRadio" Content="Expert" Focusable="False"/>
         </Menu>
         <Label x:Name="puzzleLabel" Content="" HorizontalAlignment="Left" Margin="209,11,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="133" FontSize="16" FontWeight="Bold" Height="33"/>
-        <TextBox x:Name="Cell00" HorizontalAlignment="Left" Height="31" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="4,4,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" TextAlignment="Center" Margin="134,49,0,0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="GameCellTextChange" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell00" HorizontalAlignment="Left" Height="31" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="4,4,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" TextAlignment="Center" Margin="134,49,0,0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell01" HorizontalAlignment="Left" Height="31" Margin="165,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,4,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" TextAlignment="Center" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="GameCellTextChange" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell01" HorizontalAlignment="Left" Height="31" Margin="165,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,4,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" TextAlignment="Center" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
@@ -423,5 +423,7 @@
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
+        <Button x:Name="LoadGameButton" Content="Load Game" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="90" Click="LoadGameButton_Click"/>
+        <Button x:Name="SaveGameButton" Content="Save Game" HorizontalAlignment="Left" Margin="10,85,0,0" VerticalAlignment="Top" Width="90" Click="SaveGameButton_Click"/>
     </Grid>
 </Window>
