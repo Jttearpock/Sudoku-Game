@@ -583,7 +583,7 @@ namespace SudokuGame
                 string cellname = currentCell.Name;
                 int x = int.Parse(cellname.Substring(4, 1));
                 int y = int.Parse(cellname.Substring(5, 1));
-                this.activeGameState.ArrPuzzleCurrent[x, y] = currentCell.Text;
+                this.activeGameState.ArrPuzzleCurrent[x, y] = currentCell.Text;              
             }
             else
             {
