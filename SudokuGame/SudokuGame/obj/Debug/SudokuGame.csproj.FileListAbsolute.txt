@@ -27,3 +27,6 @@ C:\Users\RPGrinders~\Documents\GitHub\Sudoku-Game\SudokuGame\SudokuGame\obj\Debu
 C:\Users\RPGrinders~\Documents\GitHub\Sudoku-Game\SudokuGame\SudokuGame\obj\Debug\SudokuGame.g.resources
 C:\Users\RPGrinders~\Documents\GitHub\Sudoku-Game\SudokuGame\SudokuGame\obj\Debug\SudokuGame.Properties.Resources.resources
 C:\Users\RPGrinders~\Documents\GitHub\Sudoku-Game\SudokuGame\SudokuGame\obj\Debug\SudokuGame.csproj.GenerateResource.Cache
+D:\Users\John\Desktop\Sudoku-Game-0872abb3c131f288352f76b39fac6ad4641dec78\SudokuGame\SudokuGame\bin\Debug\SudokuGame.exe.config
+D:\Users\John\Desktop\Sudoku-Game-0872abb3c131f288352f76b39fac6ad4641dec78\SudokuGame\SudokuGame\obj\Debug\SudokuGame.exe
+D:\Users\John\Desktop\Sudoku-Game-0872abb3c131f288352f76b39fac6ad4641dec78\SudokuGame\SudokuGame\obj\Debug\SudokuGame.pdb
