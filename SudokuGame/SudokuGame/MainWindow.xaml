@@ -5,425 +5,438 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SudokuGame"
         mc:Ignorable="d"
-        Title="Sudoku" Height="379.412" Width="498">
+        Title="Sudoku" Height="400" Width="480">
     <Grid x:Name="DefaultGrid" Margin="0,0,-8,1">
-        <Button x:Name="NewGameButton" Content="New Game" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Click="NewGameButton_Click"/>
-        <Button x:Name="RestartButton" Content="Restart" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="90" Click="RestartButton_Click"/>
-        <Button x:Name="ExitButton" Content="Exit" HorizontalAlignment="Left" Margin="10,111,0,0" VerticalAlignment="Top" Width="90" Click="ExitButton_Click"/>
-        <Menu x:Name="difficultyMenu" HorizontalAlignment="Left" Height="100" Margin="10,136,0,0" VerticalAlignment="Top" Width="90" BorderThickness="1" BorderBrush="Black" Focusable="False">
+        <Button x:Name="NewGameButton" Content="New Game" HorizontalAlignment="Left" Margin="55,15,0,0" VerticalAlignment="Top" Width="90" Click="NewGameButton_Click"/>
+        <Button x:Name="RestartButton" Content="Restart" HorizontalAlignment="Left" Margin="55,65,0,0" VerticalAlignment="Top" Width="90" Click="RestartButton_Click"/>
+        <Button x:Name="ExitButton" Content="Exit" HorizontalAlignment="Left" Margin="55,116,0,0" VerticalAlignment="Top" Width="90" Click="ExitButton_Click"/>
+        <Menu x:Name="difficultyMenu" HorizontalAlignment="Left" Height="100" Margin="55,141,0,0" VerticalAlignment="Top" Width="90" BorderThickness="1" BorderBrush="Black" Focusable="False">
             <MenuItem Header="Difficulty" HorizontalAlignment="Center" VerticalAlignment="Center" Width="90" Focusable="False" IsTabStop="False" IsHitTestVisible="False"/>
             <RadioButton x:Name="easyDiffRadio" Content="Easy" IsChecked="True" Focusable="False"/>
             <RadioButton x:Name="mediumDiffRadio" Content="Medium" Focusable="False"/>
             <RadioButton x:Name="hardDiffRadio" Content="Hard" Focusable="False"/>
             <RadioButton x:Name="expertDiffRadio" Content="Expert" Focusable="False"/>
         </Menu>
-        <Label x:Name="puzzleLabel" Content="" HorizontalAlignment="Left" Margin="209,11,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="133" FontSize="16" FontWeight="Bold" Height="33"/>
-        <TextBox x:Name="Cell00" HorizontalAlignment="Left" Height="31" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="4,4,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" TextAlignment="Center" Margin="134,49,0,0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <Label x:Name="puzzleLabel" Content="" HorizontalAlignment="Left" Margin="247,21,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="133" FontSize="16" FontWeight="Bold" Height="33"/>
+        <TextBox x:Name="Cell00" HorizontalAlignment="Left" Height="31" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="4,4,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" TextAlignment="Center" Margin="172,58,0,0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell01" HorizontalAlignment="Left" Height="31" Margin="165,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,4,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" TextAlignment="Center" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell01" HorizontalAlignment="Left" Height="31" Margin="203,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,4,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" TextAlignment="Center" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell02" HorizontalAlignment="Left" Height="31" Margin="196,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,4,2,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" TextAlignment="Center" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell02" HorizontalAlignment="Left" Height="31" Margin="234,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,4,2,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" TextAlignment="Center" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell03" HorizontalAlignment="Left" Height="31" Margin="228,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="2,4,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" TextAlignment="Center" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell03" HorizontalAlignment="Left" Height="31" Margin="266,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="2,4,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" TextAlignment="Center" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell04" HorizontalAlignment="Left" Height="31" Margin="259,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,4,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" TextAlignment="Center" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell04" HorizontalAlignment="Left" Height="31" Margin="297,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,4,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" TextAlignment="Center" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell05" HorizontalAlignment="Left" Height="31" Margin="290,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,4,2,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" TextAlignment="Center" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell05" HorizontalAlignment="Left" Height="31" Margin="328,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,4,2,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" TextAlignment="Center" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell06" HorizontalAlignment="Left" Height="31" Margin="321,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" BorderThickness="2,4,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" TextAlignment="Center" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell06" HorizontalAlignment="Left" Height="31" Margin="359,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" BorderThickness="2,4,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" TextAlignment="Center" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell07" HorizontalAlignment="Left" Height="31" Margin="351,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,4,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" TextAlignment="Center" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell07" HorizontalAlignment="Left" Height="31" Margin="389,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,4,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" TextAlignment="Center" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell08" HorizontalAlignment="Left" Height="31" Margin="382,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,4,4,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" TextAlignment="Center" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell08" HorizontalAlignment="Left" Height="31" Margin="420,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,4,4,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" TextAlignment="Center" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell10" HorizontalAlignment="Left" Height="31" Margin="134,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="4,1,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell10" HorizontalAlignment="Left" Height="31" Margin="172,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="4,1,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell11" HorizontalAlignment="Left" Height="31" Margin="165,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell11" HorizontalAlignment="Left" Height="31" Margin="203,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell12" HorizontalAlignment="Left" Height="31" Margin="196,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,1,2,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell12" HorizontalAlignment="Left" Height="31" Margin="234,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,1,2,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell13" HorizontalAlignment="Left" Height="31" Margin="228,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="2,1,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell13" HorizontalAlignment="Left" Height="31" Margin="266,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="2,1,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell14" HorizontalAlignment="Left" Height="31" Margin="259,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell14" HorizontalAlignment="Left" Height="31" Margin="297,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell15" HorizontalAlignment="Left" Height="31" Margin="290,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,2,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell15" HorizontalAlignment="Left" Height="31" Margin="328,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,2,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell16" HorizontalAlignment="Left" Height="31" Margin="321,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" BorderThickness="2,1,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell16" HorizontalAlignment="Left" Height="31" Margin="359,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" BorderThickness="2,1,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell17" HorizontalAlignment="Left" Height="31" Margin="351,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell17" HorizontalAlignment="Left" Height="31" Margin="389,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell18" HorizontalAlignment="Left" Height="31" Margin="382,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,1,4,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell18" HorizontalAlignment="Left" Height="31" Margin="420,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,1,4,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell20" HorizontalAlignment="Left" Height="30" Margin="134,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="4,1,1,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell20" HorizontalAlignment="Left" Height="30" Margin="172,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="4,1,1,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell21" HorizontalAlignment="Left" Height="30" Margin="165,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,1,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell21" HorizontalAlignment="Left" Height="30" Margin="203,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,1,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell22" HorizontalAlignment="Left" Height="30" Margin="196,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,1,2,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell22" HorizontalAlignment="Left" Height="30" Margin="234,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,1,2,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell23" HorizontalAlignment="Left" Height="30" Margin="228,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="2,1,1,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell23" HorizontalAlignment="Left" Height="30" Margin="266,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="2,1,1,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell24" HorizontalAlignment="Left" Height="30" Margin="259,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,1,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell24" HorizontalAlignment="Left" Height="30" Margin="297,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,1,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell25" HorizontalAlignment="Left" Height="30" Margin="290,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,2,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell25" HorizontalAlignment="Left" Height="30" Margin="328,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,2,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell26" HorizontalAlignment="Left" Height="30" Margin="321,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" BorderThickness="2,1,1,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell26" HorizontalAlignment="Left" Height="30" Margin="359,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" BorderThickness="2,1,1,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell27" HorizontalAlignment="Left" Height="30" Margin="351,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,1,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell27" HorizontalAlignment="Left" Height="30" Margin="389,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,1,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell28" HorizontalAlignment="Left" Height="30" Margin="382,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,1,4,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell28" HorizontalAlignment="Left" Height="30" Margin="420,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,1,4,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell30" HorizontalAlignment="Left" Height="32" Margin="134,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="4,2,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell30" HorizontalAlignment="Left" Height="32" Margin="172,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="4,2,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell31" HorizontalAlignment="Left" Height="32" Margin="165,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,2,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell31" HorizontalAlignment="Left" Height="32" Margin="203,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,2,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell32" HorizontalAlignment="Left" Height="32" Margin="196,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,2,2,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell32" HorizontalAlignment="Left" Height="32" Margin="234,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,2,2,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell33" HorizontalAlignment="Left" Height="32" Margin="228,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="2,2,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell33" HorizontalAlignment="Left" Height="32" Margin="266,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="2,2,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell34" HorizontalAlignment="Left" Height="32" Margin="259,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,2,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell34" HorizontalAlignment="Left" Height="32" Margin="297,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,2,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell35" HorizontalAlignment="Left" Height="32" Margin="290,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,2,2,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell35" HorizontalAlignment="Left" Height="32" Margin="328,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,2,2,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell36" HorizontalAlignment="Left" Height="32" Margin="321,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" BorderThickness="2,2,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell36" HorizontalAlignment="Left" Height="32" Margin="359,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" BorderThickness="2,2,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell37" HorizontalAlignment="Left" Height="32" Margin="351,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,2,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell37" HorizontalAlignment="Left" Height="32" Margin="389,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,2,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell38" HorizontalAlignment="Left" Height="32" Margin="382,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,2,4,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell38" HorizontalAlignment="Left" Height="32" Margin="420,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,2,4,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell40" HorizontalAlignment="Left" Height="31" Margin="134,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="4,1,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell40" HorizontalAlignment="Left" Height="31" Margin="172,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="4,1,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell41" HorizontalAlignment="Left" Height="31" Margin="165,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell41" HorizontalAlignment="Left" Height="31" Margin="203,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell42" HorizontalAlignment="Left" Height="31" Margin="196,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,1,2,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell42" HorizontalAlignment="Left" Height="31" Margin="234,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,1,2,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell43" HorizontalAlignment="Left" Height="31" Margin="228,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="2,1,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell43" HorizontalAlignment="Left" Height="31" Margin="266,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="2,1,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell44" HorizontalAlignment="Left" Height="31" Margin="259,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell44" HorizontalAlignment="Left" Height="31" Margin="297,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell45" HorizontalAlignment="Left" Height="31" Margin="290,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,2,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell45" HorizontalAlignment="Left" Height="31" Margin="328,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,2,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell46" HorizontalAlignment="Left" Height="31" Margin="321,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" BorderThickness="2,1,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell46" HorizontalAlignment="Left" Height="31" Margin="359,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" BorderThickness="2,1,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell47" HorizontalAlignment="Left" Height="31" Margin="351,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell47" HorizontalAlignment="Left" Height="31" Margin="389,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell48" HorizontalAlignment="Left" Height="31" Margin="382,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,1,4,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell48" HorizontalAlignment="Left" Height="31" Margin="420,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,1,4,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell50" HorizontalAlignment="Left" Height="31" Margin="134,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="4,1,1,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell50" HorizontalAlignment="Left" Height="31" Margin="172,214,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="4,1,1,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell51" HorizontalAlignment="Left" Height="31" Margin="165,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,1,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell51" HorizontalAlignment="Left" Height="31" Margin="203,214,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,1,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell52" HorizontalAlignment="Left" Height="31" Margin="196,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,1,2,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell52" HorizontalAlignment="Left" Height="31" Margin="234,214,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,1,2,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell53" HorizontalAlignment="Left" Height="31" Margin="228,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="2,1,1,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell53" HorizontalAlignment="Left" Height="31" Margin="266,214,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="2,1,1,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell54" HorizontalAlignment="Left" Height="31" Margin="259,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,1,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell54" HorizontalAlignment="Left" Height="31" Margin="297,214,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,1,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell55" HorizontalAlignment="Left" Height="31" Margin="290,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,2,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell55" HorizontalAlignment="Left" Height="31" Margin="328,214,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,2,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell56" HorizontalAlignment="Left" Height="31" Margin="321,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" BorderThickness="2,1,1,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell56" HorizontalAlignment="Left" Height="31" Margin="359,214,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" BorderThickness="2,1,1,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell57" HorizontalAlignment="Left" Height="31" Margin="351,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,1,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell57" HorizontalAlignment="Left" Height="31" Margin="389,214,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,1,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell58" HorizontalAlignment="Left" Height="31" Margin="382,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,1,4,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell58" HorizontalAlignment="Left" Height="31" Margin="420,214,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,1,4,2" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell60" HorizontalAlignment="Left" Height="31" Margin="134,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="4,2,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell60" HorizontalAlignment="Left" Height="31" Margin="172,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="4,2,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell61" HorizontalAlignment="Left" Height="31" Margin="165,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,2,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell61" HorizontalAlignment="Left" Height="31" Margin="203,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,2,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell62" HorizontalAlignment="Left" Height="31" Margin="196,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,2,2,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell62" HorizontalAlignment="Left" Height="31" Margin="234,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,2,2,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell63" HorizontalAlignment="Left" Height="31" Margin="228,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="2,2,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell63" HorizontalAlignment="Left" Height="31" Margin="266,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="2,2,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell64" HorizontalAlignment="Left" Height="31" Margin="259,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,2,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell64" HorizontalAlignment="Left" Height="31" Margin="297,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,2,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell65" HorizontalAlignment="Left" Height="31" Margin="290,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,2,2,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell65" HorizontalAlignment="Left" Height="31" Margin="328,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,2,2,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell66" HorizontalAlignment="Left" Height="31" Margin="321,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" BorderThickness="2,2,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell66" HorizontalAlignment="Left" Height="31" Margin="359,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" BorderThickness="2,2,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell67" HorizontalAlignment="Left" Height="31" Margin="351,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,2,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell67" HorizontalAlignment="Left" Height="31" Margin="389,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,2,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell68" HorizontalAlignment="Left" Height="31" Margin="382,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,2,4,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell68" HorizontalAlignment="Left" Height="31" Margin="420,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,2,4,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell70" HorizontalAlignment="Left" Height="31" Margin="134,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="4,1,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell70" HorizontalAlignment="Left" Height="31" Margin="172,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="4,1,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell71" HorizontalAlignment="Left" Height="31" Margin="165,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell71" HorizontalAlignment="Left" Height="31" Margin="203,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell72" HorizontalAlignment="Left" Height="31" Margin="196,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,1,2,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell72" HorizontalAlignment="Left" Height="31" Margin="234,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,1,2,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell73" HorizontalAlignment="Left" Height="31" Margin="228,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="2,1,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell73" HorizontalAlignment="Left" Height="31" Margin="266,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="2,1,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell74" HorizontalAlignment="Left" Height="31" Margin="259,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell74" HorizontalAlignment="Left" Height="31" Margin="297,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell75" HorizontalAlignment="Left" Height="31" Margin="290,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,2,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell75" HorizontalAlignment="Left" Height="31" Margin="328,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,2,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell76" HorizontalAlignment="Left" Height="31" Margin="321,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" BorderThickness="2,1,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell76" HorizontalAlignment="Left" Height="31" Margin="359,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" BorderThickness="2,1,1,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell77" HorizontalAlignment="Left" Height="31" Margin="351,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell77" HorizontalAlignment="Left" Height="31" Margin="389,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell78" HorizontalAlignment="Left" Height="31" Margin="382,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,1,4,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell78" HorizontalAlignment="Left" Height="31" Margin="420,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,1,4,1" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell80" HorizontalAlignment="Left" Height="32" Margin="134,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="4,1,1,4" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell80" HorizontalAlignment="Left" Height="32" Margin="172,306,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="4,1,1,4" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell81" HorizontalAlignment="Left" Height="32" Margin="165,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,1,4" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell81" HorizontalAlignment="Left" Height="32" Margin="203,306,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,1,4" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell82" HorizontalAlignment="Left" Height="32" Margin="196,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,1,2,4" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell82" HorizontalAlignment="Left" Height="32" Margin="234,306,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,1,2,4" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell83" HorizontalAlignment="Left" Height="32" Margin="228,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="2,1,1,4" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell83" HorizontalAlignment="Left" Height="32" Margin="266,306,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="2,1,1,4" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell84" HorizontalAlignment="Left" Height="32" Margin="259,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,1,4" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell84" HorizontalAlignment="Left" Height="32" Margin="297,306,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,1,4" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell85" HorizontalAlignment="Left" Height="32" Margin="290,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,2,4" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell85" HorizontalAlignment="Left" Height="32" Margin="328,306,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,2,4" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell86" HorizontalAlignment="Left" Height="32" Margin="321,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" BorderThickness="2,1,1,4" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell86" HorizontalAlignment="Left" Height="32" Margin="359,306,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" BorderThickness="2,1,1,4" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell87" HorizontalAlignment="Left" Height="32" Margin="351,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,1,4" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell87" HorizontalAlignment="Left" Height="32" Margin="389,306,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" BorderThickness="1,1,1,4" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Cell88" HorizontalAlignment="Left" Height="32" Margin="382,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,1,4,4" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" RenderTransformOrigin="3.176,1.751" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
+        <TextBox x:Name="Cell88" HorizontalAlignment="Left" Height="32" Margin="420,306,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" BorderThickness="1,1,4,4" BorderBrush="Black" FontSize="15" MaxLength="1" MaxLines="1" Padding="0" RenderTransformOrigin="3.176,1.751" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Pen" IsReadOnly="True" Focusable="False">
             <TextBox.Background>
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <Button x:Name="LoadGameButton" Content="Load Game" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="90" Click="LoadGameButton_Click"/>
-        <Button x:Name="SaveGameButton" Content="Save Game" HorizontalAlignment="Left" Margin="10,85,0,0" VerticalAlignment="Top" Width="90" Click="SaveGameButton_Click"/>
+        <Button x:Name="LoadGameButton" Content="Load Game" HorizontalAlignment="Left" Margin="55,40,0,0" VerticalAlignment="Top" Width="90" Click="LoadGameButton_Click"/>
+        <Button x:Name="SaveGameButton" Content="Save Game" HorizontalAlignment="Left" Margin="55,90,0,0" VerticalAlignment="Top" Width="90" Click="SaveGameButton_Click"/>
+        <Menu x:Name="NumberMenu" HorizontalAlignment="Left" Height="95" Margin="20,246,0,0" VerticalAlignment="Top" Width="125" BorderThickness="1" BorderBrush="Black">
+            <MenuItem x:Name="MenuItemNumberTitle" Header="Number" IsEnabled="False" Width="90" HorizontalAlignment="Center" FontWeight="Bold"/>
+            <CheckBox x:Name="CheckBoxEnableNumber" Content="Enable Number" Checked="CheckBoxEnableNumber_Checked" Unchecked="CheckBoxEnableNumber_Unchecked"/>
+            <RadioButton x:Name="Number1" Content="1" GroupName="RadioButtonNum" IsEnabled="False"/>
+            <RadioButton x:Name="Number2" Content="2" GroupName="RadioButtonNum" IsEnabled="False"/>
+            <RadioButton x:Name="Number3" Content="3" GroupName="RadioButtonNum" IsEnabled="False"/>
+            <RadioButton x:Name="Number4" Content="4" GroupName="RadioButtonNum" IsEnabled="False"/>
+            <RadioButton x:Name="Number5" Content="5" GroupName="RadioButtonNum" IsEnabled="False"/>
+            <RadioButton x:Name="Number6" Content="6" GroupName="RadioButtonNum" IsEnabled="False"/>
+            <RadioButton x:Name="Number7" Content="7" GroupName="RadioButtonNum" IsEnabled="False"/>
+            <RadioButton x:Name="Number8" Content="8" GroupName="RadioButtonNum" IsEnabled="False"/>
+            <RadioButton x:Name="Number9" Content="9" GroupName="RadioButtonNum" IsEnabled="False"/>
+        </Menu>
     </Grid>
 </Window>

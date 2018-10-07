@@ -483,7 +483,7 @@ namespace SudokuGame
         {
             SaveFileDialog saveGameDialog = new SaveFileDialog();
             saveGameDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            saveGameDialog.DefaultExt = ".txt";            
+            saveGameDialog.DefaultExt = ".txt";
             saveGameDialog.OverwritePrompt = true;
             saveGameDialog.AddExtension = true;
             if (saveGameDialog.ShowDialog() == true)
@@ -510,7 +510,7 @@ namespace SudokuGame
                         else
                         {
                             gameData += "P"; // Placeholder character so lines remain set length
-                        }                    
+                        }
                     }
 
                     gameData += "\r\n";
@@ -530,7 +530,7 @@ namespace SudokuGame
                     }
 
                     gameData += "\r\n";
-                }               
+                }
                 File.WriteAllText(saveGameDialog.FileName, gameData);
             }
         }
@@ -594,13 +594,13 @@ namespace SudokuGame
         private void GameCellTextChange(object sender, TextChangedEventArgs e)
         {
             TextBox currentCell = sender as TextBox;
-            var validInput = new string[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", ""};
+            var validInput = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "" };
             if (validInput.Contains(currentCell.Text))
             {
                 string cellname = currentCell.Name;
                 int x = int.Parse(cellname.Substring(4, 1));
                 int y = int.Parse(cellname.Substring(5, 1));
-                this.activeGameState.ArrPuzzleCurrent[x, y] = currentCell.Text;              
+                this.activeGameState.ArrPuzzleCurrent[x, y] = currentCell.Text;
             }
             else
             {
@@ -630,6 +630,34 @@ namespace SudokuGame
             {
                 SaveGame();
             }
+        }
+
+        private void CheckBoxEnableNumber_Checked(object sender, RoutedEventArgs e)
+        {
+            MenuItemNumberTitle.IsEnabled = true;
+            Number1.IsEnabled = true;
+            Number2.IsEnabled = true;
+            Number3.IsEnabled = true;
+            Number4.IsEnabled = true;
+            Number5.IsEnabled = true;
+            Number6.IsEnabled = true;
+            Number7.IsEnabled = true;
+            Number8.IsEnabled = true;
+            Number9.IsEnabled = true;
+        }
+
+        private void CheckBoxEnableNumber_Unchecked(object sender, RoutedEventArgs e)
+        {
+            MenuItemNumberTitle.IsEnabled = false;
+            Number1.IsEnabled = false;
+            Number2.IsEnabled = false;
+            Number3.IsEnabled = false;
+            Number4.IsEnabled = false;
+            Number5.IsEnabled = false;
+            Number6.IsEnabled = false;
+            Number7.IsEnabled = false;
+            Number8.IsEnabled = false;
+            Number9.IsEnabled = false;
         }
     }
 }
