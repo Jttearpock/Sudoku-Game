@@ -27,17 +27,20 @@ C:\Users\RPGrinders~\Documents\GitHub\Sudoku-Game\SudokuGame\SudokuGame\obj\Debu
 C:\Users\RPGrinders~\Documents\GitHub\Sudoku-Game\SudokuGame\SudokuGame\obj\Debug\SudokuGame.g.resources
 C:\Users\RPGrinders~\Documents\GitHub\Sudoku-Game\SudokuGame\SudokuGame\obj\Debug\SudokuGame.Properties.Resources.resources
 C:\Users\RPGrinders~\Documents\GitHub\Sudoku-Game\SudokuGame\SudokuGame\obj\Debug\SudokuGame.csproj.GenerateResource.Cache
+H:\Visual C#\Part 2\Sudoku-Game-master\SudokuGame\SudokuGame\bin\Debug\SudokuGame.exe.config
+H:\Visual C#\Part 2\Sudoku-Game-master\SudokuGame\SudokuGame\obj\Debug\SudokuGame.exe
+H:\Visual C#\Part 2\Sudoku-Game-master\SudokuGame\SudokuGame\obj\Debug\SudokuGame.pdb
+H:\Visual C#\Part 2\Sudoku-Game-master\SudokuGame\SudokuGame\bin\Debug\SudokuGame.exe
+H:\Visual C#\Part 2\Sudoku-Game-master\SudokuGame\SudokuGame\bin\Debug\SudokuGame.pdb
+H:\Visual C#\Part 2\Sudoku-Game-master\SudokuGame\SudokuGame\obj\Debug\SudokuGame.csprojResolveAssemblyReference.cache
+H:\Visual C#\Part 2\Sudoku-Game-master\SudokuGame\SudokuGame\obj\Debug\MainWindow.g.cs
+H:\Visual C#\Part 2\Sudoku-Game-master\SudokuGame\SudokuGame\obj\Debug\App.g.cs
+H:\Visual C#\Part 2\Sudoku-Game-master\SudokuGame\SudokuGame\obj\Debug\SudokuGame_MarkupCompile.cache
+H:\Visual C#\Part 2\Sudoku-Game-master\SudokuGame\SudokuGame\obj\Debug\SudokuGame_MarkupCompile.lref
+H:\Visual C#\Part 2\Sudoku-Game-master\SudokuGame\SudokuGame\obj\Debug\MainWindow.baml
+H:\Visual C#\Part 2\Sudoku-Game-master\SudokuGame\SudokuGame\obj\Debug\SudokuGame.g.resources
+H:\Visual C#\Part 2\Sudoku-Game-master\SudokuGame\SudokuGame\obj\Debug\SudokuGame.Properties.Resources.resources
+H:\Visual C#\Part 2\Sudoku-Game-master\SudokuGame\SudokuGame\obj\Debug\SudokuGame.csproj.GenerateResource.Cache
 D:\Users\John\Documents\NWTC\Part 2 C#\Sudoku-Game\SudokuGame\SudokuGame\bin\Debug\SudokuGame.exe.config
 D:\Users\John\Documents\NWTC\Part 2 C#\Sudoku-Game\SudokuGame\SudokuGame\obj\Debug\SudokuGame.exe
 D:\Users\John\Documents\NWTC\Part 2 C#\Sudoku-Game\SudokuGame\SudokuGame\obj\Debug\SudokuGame.pdb
-D:\Users\John\Documents\NWTC\Part 2 C#\Sudoku-Game\SudokuGame\SudokuGame\bin\Debug\SudokuGame.exe
-D:\Users\John\Documents\NWTC\Part 2 C#\Sudoku-Game\SudokuGame\SudokuGame\bin\Debug\SudokuGame.pdb
-D:\Users\John\Documents\NWTC\Part 2 C#\Sudoku-Game\SudokuGame\SudokuGame\obj\Debug\SudokuGame.csprojResolveAssemblyReference.cache
-D:\Users\John\Documents\NWTC\Part 2 C#\Sudoku-Game\SudokuGame\SudokuGame\obj\Debug\MainWindow.g.cs
-D:\Users\John\Documents\NWTC\Part 2 C#\Sudoku-Game\SudokuGame\SudokuGame\obj\Debug\App.g.cs
-D:\Users\John\Documents\NWTC\Part 2 C#\Sudoku-Game\SudokuGame\SudokuGame\obj\Debug\SudokuGame_MarkupCompile.cache
-D:\Users\John\Documents\NWTC\Part 2 C#\Sudoku-Game\SudokuGame\SudokuGame\obj\Debug\SudokuGame_MarkupCompile.lref
-D:\Users\John\Documents\NWTC\Part 2 C#\Sudoku-Game\SudokuGame\SudokuGame\obj\Debug\MainWindow.baml
-D:\Users\John\Documents\NWTC\Part 2 C#\Sudoku-Game\SudokuGame\SudokuGame\obj\Debug\SudokuGame.g.resources
-D:\Users\John\Documents\NWTC\Part 2 C#\Sudoku-Game\SudokuGame\SudokuGame\obj\Debug\SudokuGame.Properties.Resources.resources
-D:\Users\John\Documents\NWTC\Part 2 C#\Sudoku-Game\SudokuGame\SudokuGame\obj\Debug\SudokuGame.csproj.GenerateResource.Cache
