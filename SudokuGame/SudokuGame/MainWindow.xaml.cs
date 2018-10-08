@@ -335,7 +335,7 @@ namespace SudokuGame
                             currentCell.Text = this.activeGameState.ArrPuzzleCurrent[x, y];
                             currentCell.FontWeight = FontWeights.Bold;
                             currentCell.IsReadOnly = true;
-                            currentCell.Focusable = true;
+                            currentCell.Focusable = false;
                             currentCell.TextChanged += GameCellTextChange;
                         }
                         else
