@@ -503,13 +503,13 @@ namespace SudokuGame
                 {
                     for (int y = 0; y < 9; y++)
                     {
-                        if (this.activeGameState.ArrPuzzleBase[x, y] != null)
+                        if (string.IsNullOrWhiteSpace(this.activeGameState.ArrPuzzleBase[x, y]))
                         {
-                            gameData += this.activeGameState.ArrPuzzleBase[x, y];
+                            gameData += "P"; // Placeholder character so lines remain set length
                         }
                         else
                         {
-                            gameData += "P"; // Placeholder character so lines remain set length
+                            gameData += this.activeGameState.ArrPuzzleBase[x, y];
                         }
                     }
 
