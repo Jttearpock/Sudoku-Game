@@ -316,6 +316,9 @@ namespace SudokuGame
         /// </summary>
         public void SetGameBoard()
         {
+            // Enable the number enabler.
+            CheckBoxEnableNumber.IsEnabled = true;
+
             int y;
             string cellName;
             for (int x = 0; x < 9; x++)
@@ -644,6 +647,31 @@ namespace SudokuGame
             Number7.IsEnabled = true;
             Number8.IsEnabled = true;
             Number9.IsEnabled = true;
+
+            int y;
+            string cellName;
+            for (int x = 0; x < 9; x++)
+            {
+                y = 0;
+                while (y < 9)
+                {
+                    cellName = "Cell" + x + y;
+                    TextBox currentCell = FindName(cellName) as TextBox;
+
+                    // If there is a starting value
+                    // Set value and lock cell
+                    if (!string.IsNullOrWhiteSpace(this.activeGameState.ArrPuzzleBase[x, y]))
+                    {
+                        currentCell.IsReadOnly = true;
+                    }
+                    else
+                    {
+                        currentCell.IsReadOnly = true;
+                    }
+
+                    y++;
+                }
+            }
         }
 
         private void CheckBoxEnableNumber_Unchecked(object sender, RoutedEventArgs e)
@@ -658,6 +686,50 @@ namespace SudokuGame
             Number7.IsEnabled = false;
             Number8.IsEnabled = false;
             Number9.IsEnabled = false;
+
+            int y;
+            string cellName;
+            for (int x = 0; x < 9; x++)
+            {
+                y = 0;
+                while (y < 9)
+                {
+                    cellName = "Cell" + x + y;
+                    TextBox currentCell = FindName(cellName) as TextBox;
+
+                    // If there is a starting value
+                    // Set value and lock cell
+                    if (!string.IsNullOrWhiteSpace(this.activeGameState.ArrPuzzleCurrent[x, y]))
+                    {
+                        if (!string.IsNullOrWhiteSpace(this.activeGameState.ArrPuzzleBase[x, y]))
+                        {
+                            currentCell.Text = this.activeGameState.ArrPuzzleCurrent[x, y];
+                            currentCell.FontWeight = FontWeights.Bold;
+                            currentCell.IsReadOnly = true;
+                            currentCell.Focusable = true;
+                            currentCell.TextChanged += GameCellTextChange;
+                        }
+                        else
+                        {
+                            currentCell.Text = this.activeGameState.ArrPuzzleCurrent[x, y];
+                            currentCell.IsReadOnly = false;
+                            currentCell.Focusable = true;
+                            currentCell.FontWeight = FontWeights.Normal;
+                            currentCell.TextChanged += GameCellTextChange;
+                        }
+                    }
+                    else
+                    {
+                        currentCell.Text = string.Empty;
+                        currentCell.IsReadOnly = false;
+                        currentCell.Focusable = true;
+                        currentCell.FontWeight = FontWeights.Normal;
+                        currentCell.TextChanged += GameCellTextChange;
+                    }
+
+                    y++;
+                }
+            }
         }
     }
 }

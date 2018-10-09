@@ -427,7 +427,7 @@
         <Button x:Name="SaveGameButton" Content="Save Game" HorizontalAlignment="Left" Margin="55,90,0,0" VerticalAlignment="Top" Width="90" Click="SaveGameButton_Click"/>
         <Menu x:Name="NumberMenu" HorizontalAlignment="Left" Height="95" Margin="20,246,0,0" VerticalAlignment="Top" Width="125" BorderThickness="1" BorderBrush="Black">
             <MenuItem x:Name="MenuItemNumberTitle" Header="Number" IsEnabled="False" Width="90" HorizontalAlignment="Center" FontWeight="Bold"/>
-            <CheckBox x:Name="CheckBoxEnableNumber" Content="Enable Number" Checked="CheckBoxEnableNumber_Checked" Unchecked="CheckBoxEnableNumber_Unchecked"/>
+            <CheckBox x:Name="CheckBoxEnableNumber" Content="Enable Number" Checked="CheckBoxEnableNumber_Checked" Unchecked="CheckBoxEnableNumber_Unchecked" IsEnabled="False"/>
             <RadioButton x:Name="Number1" Content="1" GroupName="RadioButtonNum" IsEnabled="False"/>
             <RadioButton x:Name="Number2" Content="2" GroupName="RadioButtonNum" IsEnabled="False"/>
             <RadioButton x:Name="Number3" Content="3" GroupName="RadioButtonNum" IsEnabled="False"/>
