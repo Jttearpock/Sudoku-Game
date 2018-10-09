@@ -4,6 +4,9 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System.Threading;
+using System.Windows.Media;
+
 namespace SudokuGame
 {
     using Microsoft.Win32;
@@ -483,7 +486,7 @@ namespace SudokuGame
         {
             SaveFileDialog saveGameDialog = new SaveFileDialog();
             saveGameDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            saveGameDialog.DefaultExt = ".txt";            
+            saveGameDialog.DefaultExt = ".txt";
             saveGameDialog.OverwritePrompt = true;
             saveGameDialog.AddExtension = true;
             if (saveGameDialog.ShowDialog() == true)
@@ -510,7 +513,7 @@ namespace SudokuGame
                         else
                         {
                             gameData += "P"; // Placeholder character so lines remain set length
-                        }                    
+                        }
                     }
 
                     gameData += "\r\n";
@@ -530,7 +533,7 @@ namespace SudokuGame
                     }
 
                     gameData += "\r\n";
-                }               
+                }
                 File.WriteAllText(saveGameDialog.FileName, gameData);
             }
         }
@@ -587,6 +590,49 @@ namespace SudokuGame
         }
 
         /// <summary>
+        /// Method to validate answers given in textboxes
+        /// </summary>
+        /// <param name="sender">The object that initiated the event.</param>
+        /// <param name="e">The event arguments for the event.</param> 
+        private void CheckAnswers_Click(object sender, RoutedEventArgs e)
+        {
+            // Grabs each cell and tests it against the solution to see if it is the correct answer
+            int y;
+            string cellName;
+            bool gameWin = true;
+            for (int x = 0; x < 9; x++)
+            {
+                y = 0;
+                while (y < 9)
+                {
+                    cellName = "Cell" + x + y;
+                    TextBox currentCell = FindName(cellName) as TextBox;
+
+
+                    if (!string.IsNullOrWhiteSpace(this.activeGameState.ArrPuzzleCurrent[x, y]))
+                    {
+                        if (this.activeGameState.ArrPuzzleSolution[x, y] != this.activeGameState.ArrPuzzleCurrent[x,y])
+                        {
+                            currentCell.Background = Brushes.Red;
+                            gameWin = false;
+                        }
+                    }
+                    else
+                    {
+                        gameWin = false;
+                    }
+
+                    y++;
+                }
+            }
+
+            if (gameWin == true)
+            {
+                puzzleLabel.Content = "You've Won!";
+            }
+        }
+
+        /// <summary>
         /// Method to validate text input & add it to Current Array
         /// </summary>
         /// <param name="sender">The object that initiated the event.</param>
@@ -594,13 +640,14 @@ namespace SudokuGame
         private void GameCellTextChange(object sender, TextChangedEventArgs e)
         {
             TextBox currentCell = sender as TextBox;
-            var validInput = new string[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", ""};
+            var validInput = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "" };
             if (validInput.Contains(currentCell.Text))
             {
                 string cellname = currentCell.Name;
                 int x = int.Parse(cellname.Substring(4, 1));
                 int y = int.Parse(cellname.Substring(5, 1));
-                this.activeGameState.ArrPuzzleCurrent[x, y] = currentCell.Text;              
+                this.activeGameState.ArrPuzzleCurrent[x, y] = currentCell.Text;
+                currentCell.Background = new ImageBrush();
             }
             else
             {

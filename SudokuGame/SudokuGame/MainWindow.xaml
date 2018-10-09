@@ -425,5 +425,6 @@
         </TextBox>
         <Button x:Name="LoadGameButton" Content="Load Game" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="90" Click="LoadGameButton_Click"/>
         <Button x:Name="SaveGameButton" Content="Save Game" HorizontalAlignment="Left" Margin="10,85,0,0" VerticalAlignment="Top" Width="90" Click="SaveGameButton_Click"/>
+        <Button x:Name="CheckAnswers" Content="Check Answers" HorizontalAlignment="Left" Margin="10,266,0,0" VerticalAlignment="Top" Width="90" Click="CheckAnswers_Click"/>
     </Grid>
 </Window>
