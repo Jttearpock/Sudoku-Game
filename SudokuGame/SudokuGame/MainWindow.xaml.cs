@@ -5,6 +5,8 @@
 //-----------------------------------------------------------------------
 
 
+using System.Security.Cryptography.X509Certificates;
+using System.Windows.Media;
 
 namespace SudokuGame
 {
@@ -321,6 +323,7 @@ namespace SudokuGame
         {
             int y;
             string cellName;
+            string noteCellName;
             for (int x = 0; x < 9; x++)
             {
                 y = 0;
@@ -328,6 +331,8 @@ namespace SudokuGame
                 {
                     cellName = "Cell" + x + y;
                     TextBox currentCell = FindName(cellName) as TextBox;
+                    noteCellName = "CellNote" + x + y;
+                    TextBox currentNote = FindName(noteCellName) as TextBox;
 
                     // If there is a starting value
                     // Set value and lock cell
@@ -339,7 +344,7 @@ namespace SudokuGame
                             currentCell.FontWeight = FontWeights.Bold;
                             currentCell.IsReadOnly = true;
                             currentCell.Focusable = true;
-                            currentCell.TextChanged += GameCellTextChange;
+                            currentNote.IsReadOnly = true;
                         }
                         else
                         {
@@ -348,6 +353,8 @@ namespace SudokuGame
                             currentCell.Focusable = true;
                             currentCell.FontWeight = FontWeights.Normal;
                             currentCell.TextChanged += GameCellTextChange;
+                            currentNote.IsReadOnly = false;
+                            currentNote.Focusable = true;
                         }
                     }
                     else
@@ -357,6 +364,8 @@ namespace SudokuGame
                         currentCell.Focusable = true;
                         currentCell.FontWeight = FontWeights.Normal;
                         currentCell.TextChanged += GameCellTextChange;
+                        currentNote.IsReadOnly = false;
+                        currentNote.Focusable = true;
                     }
 
                     y++;
@@ -1445,6 +1454,27 @@ namespace SudokuGame
         {
             values[Number1] = 1;
             showNumber[Cell00] = values.ToString();
+        }
+
+        //Note Enable Button
+        private void noteButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button NoteButton = sender as Button;
+
+            if (Panel.GetZIndex(GameGrid) > Panel.GetZIndex(NoteGrid))
+            {
+                Panel.SetZIndex(GameGrid, 0);
+                Panel.SetZIndex(NoteGrid, 1);
+                NoteButton.Background = Brushes.Green;
+                
+            }
+            else
+            {
+
+                Panel.SetZIndex(GameGrid, 1);
+                Panel.SetZIndex(NoteGrid, 0);
+                NoteButton.Background = Brushes.LightGray;
+            }
         }
     }
 }

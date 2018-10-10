@@ -44,3 +44,17 @@ H:\Visual C#\Part 2\Sudoku-Game-master\SudokuGame\SudokuGame\obj\Debug\SudokuGam
 D:\Users\John\Documents\NWTC\Part 2 C#\Sudoku-Game\SudokuGame\SudokuGame\bin\Debug\SudokuGame.exe.config
 D:\Users\John\Documents\NWTC\Part 2 C#\Sudoku-Game\SudokuGame\SudokuGame\obj\Debug\SudokuGame.exe
 D:\Users\John\Documents\NWTC\Part 2 C#\Sudoku-Game\SudokuGame\SudokuGame\obj\Debug\SudokuGame.pdb
+C:\Users\CNASI\Downloads\Sudoku-Game-master\Sudoku-Game-master\SudokuGame\SudokuGame\bin\Debug\SudokuGame.exe.config
+C:\Users\CNASI\Downloads\Sudoku-Game-master\Sudoku-Game-master\SudokuGame\SudokuGame\obj\Debug\SudokuGame.exe
+C:\Users\CNASI\Downloads\Sudoku-Game-master\Sudoku-Game-master\SudokuGame\SudokuGame\obj\Debug\SudokuGame.pdb
+C:\Users\CNASI\Downloads\Sudoku-Game-master\Sudoku-Game-master\SudokuGame\SudokuGame\bin\Debug\SudokuGame.exe
+C:\Users\CNASI\Downloads\Sudoku-Game-master\Sudoku-Game-master\SudokuGame\SudokuGame\bin\Debug\SudokuGame.pdb
+C:\Users\CNASI\Downloads\Sudoku-Game-master\Sudoku-Game-master\SudokuGame\SudokuGame\obj\Debug\SudokuGame.csprojResolveAssemblyReference.cache
+C:\Users\CNASI\Downloads\Sudoku-Game-master\Sudoku-Game-master\SudokuGame\SudokuGame\obj\Debug\MainWindow.g.cs
+C:\Users\CNASI\Downloads\Sudoku-Game-master\Sudoku-Game-master\SudokuGame\SudokuGame\obj\Debug\App.g.cs
+C:\Users\CNASI\Downloads\Sudoku-Game-master\Sudoku-Game-master\SudokuGame\SudokuGame\obj\Debug\SudokuGame_MarkupCompile.cache
+C:\Users\CNASI\Downloads\Sudoku-Game-master\Sudoku-Game-master\SudokuGame\SudokuGame\obj\Debug\SudokuGame_MarkupCompile.lref
+C:\Users\CNASI\Downloads\Sudoku-Game-master\Sudoku-Game-master\SudokuGame\SudokuGame\obj\Debug\MainWindow.baml
+C:\Users\CNASI\Downloads\Sudoku-Game-master\Sudoku-Game-master\SudokuGame\SudokuGame\obj\Debug\SudokuGame.g.resources
+C:\Users\CNASI\Downloads\Sudoku-Game-master\Sudoku-Game-master\SudokuGame\SudokuGame\obj\Debug\SudokuGame.Properties.Resources.resources
+C:\Users\CNASI\Downloads\Sudoku-Game-master\Sudoku-Game-master\SudokuGame\SudokuGame\obj\Debug\SudokuGame.csproj.GenerateResource.Cache
