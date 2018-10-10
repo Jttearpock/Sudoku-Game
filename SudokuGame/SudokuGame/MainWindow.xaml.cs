@@ -4,19 +4,16 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-using System;
-using System.Windows.Controls;
-using System.Windows.Media;
-
 namespace SudokuGame
 {
-    using Microsoft.Win32;
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-
+    using System.Windows.Media;
+    using Microsoft.Win32;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -98,7 +95,8 @@ namespace SudokuGame
             // Randomly choose how to rotate the chosen puzzle
             // Summary
             Random puzzleRotation = new Random();
-            //int rotateValue = puzzleRotation.Next(1, 8);
+
+            // int rotateValue = puzzleRotation.Next(1, 8);
             int rotateValue = 3;
 
             if (rotateValue == 1)
@@ -325,6 +323,7 @@ namespace SudokuGame
 
             int y;
             string cellName;
+            string noteCellName;
             for (int x = 0; x < 9; x++)
             {
                 y = 0;
@@ -332,7 +331,8 @@ namespace SudokuGame
                 {
                     cellName = "Cell" + x + y;
                     TextBox currentCell = FindName(cellName) as TextBox;
-
+                    noteCellName = "CellNote" + x + y;
+                    TextBox currentNote = FindName(noteCellName) as TextBox;
 
                     // If there is a starting value
                     // Set value and lock cell
@@ -344,9 +344,15 @@ namespace SudokuGame
                             currentCell.FontWeight = FontWeights.Bold;
                             currentCell.IsReadOnly = true;
                             currentCell.Focusable = false;
-                            currentCell.TextChanged -= GameCellTextChange;
-                            currentCell.GotFocus -= InsertNumber;
+                            currentCell.TextChanged -= this.GameCellTextChange;
+                            currentCell.GotFocus -= this.InsertNumber;
                             currentCell.Background = new ImageBrush();
+
+                            currentNote.Text = string.Empty;
+                            currentNote.Focusable = false;
+                            currentNote.TextChanged -= this.GameCellTextChange;
+                            currentNote.GotFocus -= this.InsertNumber;
+                            currentNote.IsReadOnly = true;
                         }
                         else
                         {
@@ -354,10 +360,14 @@ namespace SudokuGame
                             currentCell.IsReadOnly = false;
                             currentCell.Focusable = true;
                             currentCell.FontWeight = FontWeights.Normal;
-                            currentCell.TextChanged += GameCellTextChange;
-                            currentCell.GotFocus += InsertNumber;
+                            currentCell.TextChanged += this.GameCellTextChange;
+                            currentCell.GotFocus += this.InsertNumber;
                             currentCell.Background = new ImageBrush();
 
+                            currentNote.Text = string.Empty;
+                            currentNote.Focusable = true;
+                            currentNote.IsReadOnly = true;
+                            currentNote.GotFocus += this.InsertNumber;
                         }
                     }
                     else
@@ -366,10 +376,14 @@ namespace SudokuGame
                         currentCell.IsReadOnly = false;
                         currentCell.Focusable = true;
                         currentCell.FontWeight = FontWeights.Normal;
-                        currentCell.TextChanged += GameCellTextChange;
-                        currentCell.GotFocus += InsertNumber;
+                        currentCell.TextChanged += this.GameCellTextChange;
+                        currentCell.GotFocus += this.InsertNumber;
                         currentCell.Background = new ImageBrush();
 
+                        currentNote.Text = string.Empty;
+                        currentNote.Focusable = true;
+                        currentNote.IsReadOnly = true;
+                        currentNote.GotFocus += this.InsertNumber;
                     }
 
                     y++;
@@ -382,7 +396,6 @@ namespace SudokuGame
                 RadioButton currentButton = FindName(numberName) as RadioButton;
                 currentButton.IsEnabled = true;
             }
-
         }
 
         /// <summary>
@@ -418,19 +431,22 @@ namespace SudokuGame
                 int totalLines = File.ReadLines(loadGameDialog.FileName).Count(line => !string.IsNullOrWhiteSpace(line));
                 if (totalLines != 28)
                 {
-                    if (MessageBox.Show("This file appears to be an incorrect format.  Errors may occur. Load anyways?",
-                            "Confirm", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                    if (MessageBox.Show("This file appears to be an incorrect format.  Errors may occur. Load anyways?", "Confirm", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                     {
-                        LoadGameFile(loadGameDialog.FileName);
+                        this.LoadGameFile(loadGameDialog.FileName);
                     }
                 }
                 else
                 {
-                    LoadGameFile(loadGameDialog.FileName);
+                    this.LoadGameFile(loadGameDialog.FileName);
                 }
             }
         }
 
+        /// <summary>
+        /// Method to load game file after opening
+        /// </summary>
+        /// /// <param name="fileLocation">The location of the opened file.</param>
         public void LoadGameFile(string fileLocation)
         {
             StreamReader savedGame = File.OpenText(fileLocation);
@@ -444,7 +460,7 @@ namespace SudokuGame
 
             while (savedGame.EndOfStream == false)
             {
-                //Read Solution Puzzle from file
+                // Read Solution Puzzle from file
                 int y;
                 for (int x = 0; x < 9; x++)
                 {
@@ -459,7 +475,8 @@ namespace SudokuGame
                         }
                     }
                 }
-                //Read Base Puzzle from file
+
+                // Read Base Puzzle from file
                 for (int x = 0; x < 9; x++)
                 {
                     string currentLine = savedGame.ReadLine();
@@ -473,12 +490,13 @@ namespace SudokuGame
                         }
                         else
                         {
-                            this.activeGameState.ArrPuzzleBase[x, y] = String.Empty;
+                            this.activeGameState.ArrPuzzleBase[x, y] = string.Empty;
                             y++;
                         }
                     }
                 }
-                //Read Current Puzzle from file
+
+                // Read Current Puzzle from file
                 for (int x = 0; x < 9; x++)
                 {
                     string currentLine = savedGame.ReadLine();
@@ -492,7 +510,7 @@ namespace SudokuGame
                         }
                         else
                         {
-                            this.activeGameState.ArrPuzzleCurrent[x, y] = String.Empty;
+                            this.activeGameState.ArrPuzzleCurrent[x, y] = string.Empty;
                             y++;
                         }
                     }
@@ -512,7 +530,7 @@ namespace SudokuGame
             saveGameDialog.AddExtension = true;
             if (saveGameDialog.ShowDialog() == true)
             {
-                string gameData = String.Empty;
+                string gameData = string.Empty;
                 gameData += this.activeGameState.DifficultyLevel + "\r\n";
                 for (int x = 0; x < 9; x++)
                 {
@@ -523,6 +541,7 @@ namespace SudokuGame
 
                     gameData += "\r\n";
                 }
+
                 for (int x = 0; x < 9; x++)
                 {
                     for (int y = 0; y < 9; y++)
@@ -539,6 +558,7 @@ namespace SudokuGame
 
                     gameData += "\r\n";
                 }
+
                 for (int x = 0; x < 9; x++)
                 {
                     for (int y = 0; y < 9; y++)
@@ -555,10 +575,15 @@ namespace SudokuGame
 
                     gameData += "\r\n";
                 }
+
                 File.WriteAllText(saveGameDialog.FileName, gameData);
             }
         }
 
+        /// <summary>
+        /// Method for finding the current selected number
+        /// </summary>
+        /// <returns>The selected number</returns>
         private string FindSelectedNumber()
         {
             string selectedNum = "0";
@@ -660,8 +685,8 @@ namespace SudokuGame
         /// <param name="e">The event arguments for the event.</param> 
         private void LoadGameButton_Click(object sender, RoutedEventArgs e)
         {
-            OpenGameFile();
-            SetGameBoard();
+            this.OpenGameFile();
+            this.SetGameBoard();
         }
 
         /// <summary>
@@ -673,7 +698,7 @@ namespace SudokuGame
         {
             if (this.activeGameState.OnGoingGame == true)
             {
-                SaveGame();
+                this.SaveGame();
             }
         }
 
@@ -684,48 +709,91 @@ namespace SudokuGame
         /// <param name="e">The event arguments for the event.</param> 
         private void CheckAnswersButton_Click(object sender, RoutedEventArgs e)
         {
-            int y;
-            string cellName;
-            bool gameWin = true;
-            for (int x = 0; x < 9; x++)
+            if (this.activeGameState.OnGoingGame == true)
             {
-                y = 0;
-                while (y < 9)
+                int y;
+                string cellName;
+                bool gameWin = true;
+                for (int x = 0; x < 9; x++)
                 {
-                    cellName = "Cell" + x + y;
-                    TextBox currentCell = FindName(cellName) as TextBox;
-
-
-                    if (!string.IsNullOrWhiteSpace(this.activeGameState.ArrPuzzleCurrent[x, y]))
+                    y = 0;
+                    while (y < 9)
                     {
-                        if (this.activeGameState.ArrPuzzleSolution[x, y] != this.activeGameState.ArrPuzzleCurrent[x, y])
+                        cellName = "Cell" + x + y;
+                        TextBox currentCell = FindName(cellName) as TextBox;
+
+                        if (!string.IsNullOrWhiteSpace(this.activeGameState.ArrPuzzleCurrent[x, y]))
                         {
-                            currentCell.Background = Brushes.Red;
+                            if (this.activeGameState.ArrPuzzleSolution[x, y] != this.activeGameState.ArrPuzzleCurrent[x, y])
+                            {
+                                currentCell.Background = Brushes.Red;
+                                gameWin = false;
+                            }
+                        }
+                        else
+                        {
                             gameWin = false;
                         }
-                    }
-                    else
-                    {
-                        gameWin = false;
-                    }
 
-                    y++;
+                        y++;
+                    }
+                }
+
+                if (gameWin == true)
+                {
+                    puzzleLabel.Content = "You've Won!";
                 }
             }
+        }
 
-            if (gameWin == true)
-            {
-                puzzleLabel.Content = "You've Won!";
-            }
-        }    
-
+        /// <summary>
+        /// Method to insert number on cell focus
+        /// </summary>
+        /// <param name="sender">The object that initiated the event.</param>
+        /// <param name="e">The event arguments for the event.</param> 
         private void InsertNumber(object sender, RoutedEventArgs e)
         {
             if (CheckBoxEnableNumber.IsChecked == true)
             {
                 TextBox currentCell = sender as TextBox;
-                string number = FindSelectedNumber();
-                currentCell.Text = number;
+                string selectedNumber = this.FindSelectedNumber();
+
+                if (!currentCell.Name.Contains("Note"))
+                {
+                    currentCell.Text = selectedNumber;
+                }
+                else
+                {
+                    string cellname = currentCell.Name;
+                    string x = cellname.Substring(8, 1);
+                    string y = cellname.Substring(9, 1);
+                    string gamecellName = "Cell" + x + y;
+                    TextBox gameCell = FindName(gamecellName) as TextBox;
+
+                    if (string.IsNullOrWhiteSpace(gameCell.Text))
+                    {
+                        List<string> tags = new List<string>();
+                        string currentTags = currentCell.Text;
+                        foreach (char c in currentTags)
+                        {
+                            tags.Add(c.ToString());
+                        }
+
+                        if (!tags.Contains(selectedNumber))
+                        {
+                            tags.Add(selectedNumber);
+                        }
+
+                        List<string> sortedTags = tags.OrderBy(c => c).ToList();
+                        currentCell.Text = string.Empty;
+                        foreach (var tag in sortedTags)
+                        {
+                            currentCell.Text += tag;
+                        }
+
+                        NoteGrid.Focus();
+                    }
+                }
             }
         }
 
@@ -737,7 +805,7 @@ namespace SudokuGame
         private void GameCellTextChange(object sender, TextChangedEventArgs e)
         {
             TextBox currentCell = sender as TextBox;
-            var validInput = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "" };
+            var validInput = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", string.Empty };
             if (validInput.Contains(currentCell.Text))
             {
                 string cellname = currentCell.Name;
@@ -745,10 +813,44 @@ namespace SudokuGame
                 int y = int.Parse(cellname.Substring(5, 1));
                 this.activeGameState.ArrPuzzleCurrent[x, y] = currentCell.Text;
                 currentCell.Background = new ImageBrush();
+
+                string noteCell = "CellNote" + x.ToString() + y.ToString();
+                TextBox currentNote = FindName(noteCell) as TextBox;
+                currentNote.Text = string.Empty;
             }
             else
             {
-                currentCell.Text = String.Empty;
+                currentCell.Text = string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Method to Enable Notes Mode
+        /// </summary>
+        /// <param name="sender">The object that initiated the event.</param>
+        /// <param name="e">The event arguments for the event.</param> 
+        private void EnableNotes_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.activeGameState.OnGoingGame == true)
+            {
+                Button noteButton = sender as Button;
+
+                if (Panel.GetZIndex(this.GameGrid) > Panel.GetZIndex(this.NoteGrid))
+                {
+                    Panel.SetZIndex(this.GameGrid, 0);
+                    Panel.SetZIndex(this.NoteGrid, 1);
+                    noteButton.Background = Brushes.LightGreen;
+                    CheckBoxEnableNumber.IsChecked = true;
+                    NotesTextBlock.Text = "Use \"Insert Number\" method for notes";
+                }
+                else
+                {
+                    Panel.SetZIndex(this.GameGrid, 1);
+                    Panel.SetZIndex(this.NoteGrid, 0);
+                    noteButton.Background = Brushes.LightGray;
+                    CheckBoxEnableNumber.IsChecked = true;
+                    NotesTextBlock.Text = string.Empty;
+                }
             }
         }
     }
