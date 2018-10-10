@@ -328,6 +328,7 @@ namespace SudokuGame
                 {
                     cellName = "Cell" + x + y;
                     TextBox currentCell = FindName(cellName) as TextBox;
+  
 
                     // If there is a starting value
                     // Set value and lock cell
@@ -339,7 +340,6 @@ namespace SudokuGame
                             currentCell.FontWeight = FontWeights.Bold;
                             currentCell.IsReadOnly = true;
                             currentCell.Focusable = true;
-                            currentCell.TextChanged += GameCellTextChange;
                         }
                         else
                         {
@@ -348,6 +348,7 @@ namespace SudokuGame
                             currentCell.Focusable = true;
                             currentCell.FontWeight = FontWeights.Normal;
                             currentCell.TextChanged += GameCellTextChange;
+                            currentCell.GotFocus += InsertNumber;
                         }
                     }
                     else
@@ -357,6 +358,7 @@ namespace SudokuGame
                         currentCell.Focusable = true;
                         currentCell.FontWeight = FontWeights.Normal;
                         currentCell.TextChanged += GameCellTextChange;
+                        currentCell.GotFocus += InsertNumber;
                     }
 
                     y++;
@@ -506,7 +508,7 @@ namespace SudokuGame
                 {
                     for (int y = 0; y < 9; y++)
                     {
-                        if (this.activeGameState.ArrPuzzleBase[x, y] != null)
+                        if (!string.IsNullOrWhiteSpace(this.activeGameState.ArrPuzzleBase[x, y]))
                         {
                             gameData += this.activeGameState.ArrPuzzleBase[x, y];
                         }
@@ -515,7 +517,7 @@ namespace SudokuGame
                             gameData += "P"; // Placeholder character so lines remain set length
                         }
                     }
-
+                    
                     gameData += "\r\n";
                 }
                 for (int x = 0; x < 9; x++)
@@ -635,100 +637,56 @@ namespace SudokuGame
             }
         }
 
-        private void CheckBoxEnableNumber_Checked(object sender, RoutedEventArgs e)
+        private string FindSelectedNumber()
         {
-            MenuItemNumberTitle.IsEnabled = true;
-            Number1.IsEnabled = true;
-            Number2.IsEnabled = true;
-            Number3.IsEnabled = true;
-            Number4.IsEnabled = true;
-            Number5.IsEnabled = true;
-            Number6.IsEnabled = true;
-            Number7.IsEnabled = true;
-            Number8.IsEnabled = true;
-            Number9.IsEnabled = true;
-
-            int y;
-            string cellName;
-            for (int x = 0; x < 9; x++)
+            string selectedNum = "0";
+            if (Number1.IsChecked == true)
             {
-                y = 0;
-                while (y < 9)
-                {
-                    cellName = "Cell" + x + y;
-                    TextBox currentCell = FindName(cellName) as TextBox;
-
-                    // If there is a starting value
-                    // Set value and lock cell
-                    if (!string.IsNullOrWhiteSpace(this.activeGameState.ArrPuzzleBase[x, y]))
-                    {
-                        currentCell.IsReadOnly = true;
-                    }
-                    else
-                    {
-                        currentCell.IsReadOnly = true;
-                    }
-
-                    y++;
-                }
+                selectedNum = "1";
             }
+            else if (Number2.IsChecked == true)
+            {
+                selectedNum = "2";
+            }
+            else if (Number3.IsChecked == true)
+            {
+                selectedNum = "3";
+            }
+            else if (Number4.IsChecked == true)
+            {
+                selectedNum = "4";
+            }
+            else if (Number5.IsChecked == true)
+            {
+                selectedNum = "5";
+            }
+            else if (Number6.IsChecked == true)
+            {
+                selectedNum = "6";
+            }
+            else if (Number7.IsChecked == true)
+            {
+                selectedNum = "7";
+            }
+            else if (Number8.IsChecked == true)
+            {
+                selectedNum = "8";
+            }
+            else if (Number9.IsChecked == true)
+            {
+                selectedNum = "9";
+            }
+ 
+            return selectedNum;
         }
 
-        private void CheckBoxEnableNumber_Unchecked(object sender, RoutedEventArgs e)
+        private void InsertNumber(object sender, RoutedEventArgs e)
         {
-            MenuItemNumberTitle.IsEnabled = false;
-            Number1.IsEnabled = false;
-            Number2.IsEnabled = false;
-            Number3.IsEnabled = false;
-            Number4.IsEnabled = false;
-            Number5.IsEnabled = false;
-            Number6.IsEnabled = false;
-            Number7.IsEnabled = false;
-            Number8.IsEnabled = false;
-            Number9.IsEnabled = false;
-
-            int y;
-            string cellName;
-            for (int x = 0; x < 9; x++)
+            if (CheckBoxEnableNumber.IsChecked == true)
             {
-                y = 0;
-                while (y < 9)
-                {
-                    cellName = "Cell" + x + y;
-                    TextBox currentCell = FindName(cellName) as TextBox;
-
-                    // If there is a starting value
-                    // Set value and lock cell
-                    if (!string.IsNullOrWhiteSpace(this.activeGameState.ArrPuzzleCurrent[x, y]))
-                    {
-                        if (!string.IsNullOrWhiteSpace(this.activeGameState.ArrPuzzleBase[x, y]))
-                        {
-                            currentCell.Text = this.activeGameState.ArrPuzzleCurrent[x, y];
-                            currentCell.FontWeight = FontWeights.Bold;
-                            currentCell.IsReadOnly = true;
-                            currentCell.Focusable = true;
-                            currentCell.TextChanged += GameCellTextChange;
-                        }
-                        else
-                        {
-                            currentCell.Text = this.activeGameState.ArrPuzzleCurrent[x, y];
-                            currentCell.IsReadOnly = false;
-                            currentCell.Focusable = true;
-                            currentCell.FontWeight = FontWeights.Normal;
-                            currentCell.TextChanged += GameCellTextChange;
-                        }
-                    }
-                    else
-                    {
-                        currentCell.Text = string.Empty;
-                        currentCell.IsReadOnly = false;
-                        currentCell.Focusable = true;
-                        currentCell.FontWeight = FontWeights.Normal;
-                        currentCell.TextChanged += GameCellTextChange;
-                    }
-
-                    y++;
-                }
+                TextBox currentCell = sender as TextBox;
+                string number = FindSelectedNumber();
+                currentCell.Text = number;
             }
         }
     }
