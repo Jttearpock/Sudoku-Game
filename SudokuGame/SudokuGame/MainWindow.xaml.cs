@@ -4,13 +4,14 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-
+using System;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace SudokuGame
 {
     using Microsoft.Win32;
     using System;
-    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Windows;
@@ -319,6 +320,9 @@ namespace SudokuGame
         /// </summary>
         public void SetGameBoard()
         {
+            // Enable the number enabler.
+            CheckBoxEnableNumber.IsEnabled = true;
+
             int y;
             string cellName;
             for (int x = 0; x < 9; x++)
@@ -329,6 +333,7 @@ namespace SudokuGame
                     cellName = "Cell" + x + y;
                     TextBox currentCell = FindName(cellName) as TextBox;
 
+
                     // If there is a starting value
                     // Set value and lock cell
                     if (!string.IsNullOrWhiteSpace(this.activeGameState.ArrPuzzleCurrent[x, y]))
@@ -338,8 +343,10 @@ namespace SudokuGame
                             currentCell.Text = this.activeGameState.ArrPuzzleCurrent[x, y];
                             currentCell.FontWeight = FontWeights.Bold;
                             currentCell.IsReadOnly = true;
-                            currentCell.Focusable = true;
-                            currentCell.TextChanged += GameCellTextChange;
+                            currentCell.Focusable = false;
+                            currentCell.TextChanged -= GameCellTextChange;
+                            currentCell.GotFocus -= InsertNumber;
+                            currentCell.Background = new ImageBrush();
                         }
                         else
                         {
@@ -348,6 +355,9 @@ namespace SudokuGame
                             currentCell.Focusable = true;
                             currentCell.FontWeight = FontWeights.Normal;
                             currentCell.TextChanged += GameCellTextChange;
+                            currentCell.GotFocus += InsertNumber;
+                            currentCell.Background = new ImageBrush();
+
                         }
                     }
                     else
@@ -357,11 +367,22 @@ namespace SudokuGame
                         currentCell.Focusable = true;
                         currentCell.FontWeight = FontWeights.Normal;
                         currentCell.TextChanged += GameCellTextChange;
+                        currentCell.GotFocus += InsertNumber;
+                        currentCell.Background = new ImageBrush();
+
                     }
 
                     y++;
                 }
             }
+
+            for (int x = 1; x < 10; x++)
+            {
+                string numberName = "Number" + x;
+                RadioButton currentButton = FindName(numberName) as RadioButton;
+                currentButton.IsEnabled = true;
+            }
+
         }
 
         /// <summary>
@@ -506,13 +527,13 @@ namespace SudokuGame
                 {
                     for (int y = 0; y < 9; y++)
                     {
-                        if (string.IsNullOrWhiteSpace(this.activeGameState.ArrPuzzleBase[x, y]))
+                        if (!string.IsNullOrWhiteSpace(this.activeGameState.ArrPuzzleBase[x, y]))
                         {
-                            gameData += "P"; // Placeholder character so lines remain set length
+                            gameData += this.activeGameState.ArrPuzzleBase[x, y];
                         }
                         else
                         {
-                            gameData += this.activeGameState.ArrPuzzleBase[x, y];
+                            gameData += "P"; // Placeholder character so lines remain set length
                         }
                     }
 
@@ -536,6 +557,49 @@ namespace SudokuGame
                 }
                 File.WriteAllText(saveGameDialog.FileName, gameData);
             }
+        }
+
+        private string FindSelectedNumber()
+        {
+            string selectedNum = "0";
+            if (Number1.IsChecked == true)
+            {
+                selectedNum = "1";
+            }
+            else if (Number2.IsChecked == true)
+            {
+                selectedNum = "2";
+            }
+            else if (Number3.IsChecked == true)
+            {
+                selectedNum = "3";
+            }
+            else if (Number4.IsChecked == true)
+            {
+                selectedNum = "4";
+            }
+            else if (Number5.IsChecked == true)
+            {
+                selectedNum = "5";
+            }
+            else if (Number6.IsChecked == true)
+            {
+                selectedNum = "6";
+            }
+            else if (Number7.IsChecked == true)
+            {
+                selectedNum = "7";
+            }
+            else if (Number8.IsChecked == true)
+            {
+                selectedNum = "8";
+            }
+            else if (Number9.IsChecked == true)
+            {
+                selectedNum = "9";
+            }
+
+            return selectedNum;
         }
 
         /// <summary>
@@ -590,28 +654,6 @@ namespace SudokuGame
         }
 
         /// <summary>
-        /// Method to validate text input & add it to Current Array
-        /// </summary>
-        /// <param name="sender">The object that initiated the event.</param>
-        /// <param name="e">The event arguments for the event.</param> 
-        private void GameCellTextChange(object sender, TextChangedEventArgs e)
-        {
-            TextBox currentCell = sender as TextBox;
-            var validInput = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "" };
-            if (validInput.Contains(currentCell.Text))
-            {
-                string cellname = currentCell.Name;
-                int x = int.Parse(cellname.Substring(4, 1));
-                int y = int.Parse(cellname.Substring(5, 1));
-                this.activeGameState.ArrPuzzleCurrent[x, y] = currentCell.Text;
-            }
-            else
-            {
-                currentCell.Text = String.Empty;
-            }
-        }
-
-        /// <summary>
         /// Loads game from text file of players choosing
         /// </summary>
         /// <param name="sender">The object that initiated the event.</param>
@@ -635,816 +677,79 @@ namespace SudokuGame
             }
         }
 
-        private void CheckBoxEnableNumber_Checked(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Checks current solution to see if user data is correct
+        /// </summary>
+        /// <param name="sender">The object that initiated the event.</param>
+        /// <param name="e">The event arguments for the event.</param> 
+        private void CheckAnswersButton_Click(object sender, RoutedEventArgs e)
         {
-            MenuItemNumberTitle.IsEnabled = true;
-            Number1.IsEnabled = true;
-            Number2.IsEnabled = true;
-            Number3.IsEnabled = true;
-            Number4.IsEnabled = true;
-            Number5.IsEnabled = true;
-            Number6.IsEnabled = true;
-            Number7.IsEnabled = true;
-            Number8.IsEnabled = true;
-            Number9.IsEnabled = true;
+            int y;
+            string cellName;
+            bool gameWin = true;
+            for (int x = 0; x < 9; x++)
+            {
+                y = 0;
+                while (y < 9)
+                {
+                    cellName = "Cell" + x + y;
+                    TextBox currentCell = FindName(cellName) as TextBox;
+
+
+                    if (!string.IsNullOrWhiteSpace(this.activeGameState.ArrPuzzleCurrent[x, y]))
+                    {
+                        if (this.activeGameState.ArrPuzzleSolution[x, y] != this.activeGameState.ArrPuzzleCurrent[x, y])
+                        {
+                            currentCell.Background = Brushes.Red;
+                            gameWin = false;
+                        }
+                    }
+                    else
+                    {
+                        gameWin = false;
+                    }
+
+                    y++;
+                }
+            }
+
+            if (gameWin == true)
+            {
+                puzzleLabel.Content = "You've Won!";
+            }
+        }    
+
+        private void InsertNumber(object sender, RoutedEventArgs e)
+        {
+            if (CheckBoxEnableNumber.IsChecked == true)
+            {
+                TextBox currentCell = sender as TextBox;
+                string number = FindSelectedNumber();
+                currentCell.Text = number;
+            }
         }
 
-        private void CheckBoxEnableNumber_Unchecked(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Method to validate text input & add it to Current Array
+        /// </summary>
+        /// <param name="sender">The object that initiated the event.</param>
+        /// <param name="e">The event arguments for the event.</param> 
+        private void GameCellTextChange(object sender, TextChangedEventArgs e)
         {
-            MenuItemNumberTitle.IsEnabled = false;
-            Number1.IsEnabled = false;
-            Number2.IsEnabled = false;
-            Number3.IsEnabled = false;
-            Number4.IsEnabled = false;
-            Number5.IsEnabled = false;
-            Number6.IsEnabled = false;
-            Number7.IsEnabled = false;
-            Number8.IsEnabled = false;
-            Number9.IsEnabled = false;
-        }
-        private Dictionary<RadioButton, int> values =
-            new Dictionary<RadioButton, int>();
-        private Dictionary<TextBox, string> showNumber =
-            new Dictionary<TextBox, string>();
-
-        private void Number1_Checked(object sender, RoutedEventArgs e)
-
-        {
-            values[Number1] = 1;
-
-            showNumber[Cell00] = values.ToString();
-            showNumber[Cell01] = values.ToString();
-            showNumber[Cell02] = values.ToString();
-            showNumber[Cell03] = values.ToString();
-            showNumber[Cell04] = values.ToString();
-            showNumber[Cell05] = values.ToString();
-            showNumber[Cell06] = values.ToString();
-            showNumber[Cell07] = values.ToString();
-            showNumber[Cell08] = values.ToString();
-            showNumber[Cell10] = values.ToString();
-            showNumber[Cell11] = values.ToString();
-            showNumber[Cell12] = values.ToString();
-            showNumber[Cell13] = values.ToString();
-            showNumber[Cell14] = values.ToString();
-            showNumber[Cell15] = values.ToString();
-            showNumber[Cell16] = values.ToString();
-            showNumber[Cell17] = values.ToString();
-            showNumber[Cell18] = values.ToString();
-            showNumber[Cell20] = values.ToString();
-            showNumber[Cell21] = values.ToString();
-            showNumber[Cell22] = values.ToString();
-            showNumber[Cell23] = values.ToString();
-            showNumber[Cell24] = values.ToString();
-            showNumber[Cell25] = values.ToString();
-            showNumber[Cell26] = values.ToString();
-            showNumber[Cell27] = values.ToString();
-            showNumber[Cell28] = values.ToString();
-            showNumber[Cell30] = values.ToString();
-            showNumber[Cell31] = values.ToString();
-            showNumber[Cell32] = values.ToString();
-            showNumber[Cell33] = values.ToString();
-            showNumber[Cell34] = values.ToString();
-            showNumber[Cell35] = values.ToString();
-            showNumber[Cell36] = values.ToString();
-            showNumber[Cell37] = values.ToString();
-            showNumber[Cell38] = values.ToString();
-            showNumber[Cell40] = values.ToString();
-            showNumber[Cell41] = values.ToString();
-            showNumber[Cell42] = values.ToString();
-            showNumber[Cell43] = values.ToString();
-            showNumber[Cell44] = values.ToString();
-            showNumber[Cell45] = values.ToString();
-            showNumber[Cell46] = values.ToString();
-            showNumber[Cell47] = values.ToString();
-            showNumber[Cell48] = values.ToString();
-            showNumber[Cell50] = values.ToString();
-            showNumber[Cell51] = values.ToString();
-            showNumber[Cell52] = values.ToString();
-            showNumber[Cell53] = values.ToString();
-            showNumber[Cell54] = values.ToString();
-            showNumber[Cell55] = values.ToString();
-            showNumber[Cell56] = values.ToString();
-            showNumber[Cell57] = values.ToString();
-            showNumber[Cell58] = values.ToString();
-            showNumber[Cell60] = values.ToString();
-            showNumber[Cell61] = values.ToString();
-            showNumber[Cell62] = values.ToString();
-            showNumber[Cell63] = values.ToString();
-            showNumber[Cell64] = values.ToString();
-            showNumber[Cell65] = values.ToString();
-            showNumber[Cell67] = values.ToString();
-            showNumber[Cell68] = values.ToString();
-            showNumber[Cell70] = values.ToString();
-            showNumber[Cell71] = values.ToString();
-            showNumber[Cell72] = values.ToString();
-            showNumber[Cell73] = values.ToString();
-            showNumber[Cell74] = values.ToString();
-            showNumber[Cell75] = values.ToString();
-            showNumber[Cell76] = values.ToString();
-            showNumber[Cell77] = values.ToString();
-            showNumber[Cell78] = values.ToString();
-            showNumber[Cell80] = values.ToString();
-            showNumber[Cell81] = values.ToString();
-            showNumber[Cell82] = values.ToString();
-            showNumber[Cell83] = values.ToString();
-            showNumber[Cell84] = values.ToString();
-            showNumber[Cell85] = values.ToString();
-            showNumber[Cell86] = values.ToString();
-            showNumber[Cell87] = values.ToString();
-            showNumber[Cell88] = values.ToString();
-        }
-
-        private void Number2_Checked(object sender, RoutedEventArgs e)
-        {
-            values[Number2] = 2;
-
-            showNumber[Cell00] = values.ToString();
-            showNumber[Cell01] = values.ToString();
-            showNumber[Cell02] = values.ToString();
-            showNumber[Cell03] = values.ToString();
-            showNumber[Cell04] = values.ToString();
-            showNumber[Cell05] = values.ToString();
-            showNumber[Cell06] = values.ToString();
-            showNumber[Cell07] = values.ToString();
-            showNumber[Cell08] = values.ToString();
-            showNumber[Cell10] = values.ToString();
-            showNumber[Cell11] = values.ToString();
-            showNumber[Cell12] = values.ToString();
-            showNumber[Cell13] = values.ToString();
-            showNumber[Cell14] = values.ToString();
-            showNumber[Cell15] = values.ToString();
-            showNumber[Cell16] = values.ToString();
-            showNumber[Cell17] = values.ToString();
-            showNumber[Cell18] = values.ToString();
-            showNumber[Cell20] = values.ToString();
-            showNumber[Cell21] = values.ToString();
-            showNumber[Cell22] = values.ToString();
-            showNumber[Cell23] = values.ToString();
-            showNumber[Cell24] = values.ToString();
-            showNumber[Cell25] = values.ToString();
-            showNumber[Cell26] = values.ToString();
-            showNumber[Cell27] = values.ToString();
-            showNumber[Cell28] = values.ToString();
-            showNumber[Cell30] = values.ToString();
-            showNumber[Cell31] = values.ToString();
-            showNumber[Cell32] = values.ToString();
-            showNumber[Cell33] = values.ToString();
-            showNumber[Cell34] = values.ToString();
-            showNumber[Cell35] = values.ToString();
-            showNumber[Cell36] = values.ToString();
-            showNumber[Cell37] = values.ToString();
-            showNumber[Cell38] = values.ToString();
-            showNumber[Cell40] = values.ToString();
-            showNumber[Cell41] = values.ToString();
-            showNumber[Cell42] = values.ToString();
-            showNumber[Cell43] = values.ToString();
-            showNumber[Cell44] = values.ToString();
-            showNumber[Cell45] = values.ToString();
-            showNumber[Cell46] = values.ToString();
-            showNumber[Cell47] = values.ToString();
-            showNumber[Cell48] = values.ToString();
-            showNumber[Cell50] = values.ToString();
-            showNumber[Cell51] = values.ToString();
-            showNumber[Cell52] = values.ToString();
-            showNumber[Cell53] = values.ToString();
-            showNumber[Cell54] = values.ToString();
-            showNumber[Cell55] = values.ToString();
-            showNumber[Cell56] = values.ToString();
-            showNumber[Cell57] = values.ToString();
-            showNumber[Cell58] = values.ToString();
-            showNumber[Cell60] = values.ToString();
-            showNumber[Cell61] = values.ToString();
-            showNumber[Cell62] = values.ToString();
-            showNumber[Cell63] = values.ToString();
-            showNumber[Cell64] = values.ToString();
-            showNumber[Cell65] = values.ToString();
-            showNumber[Cell67] = values.ToString();
-            showNumber[Cell68] = values.ToString();
-            showNumber[Cell70] = values.ToString();
-            showNumber[Cell71] = values.ToString();
-            showNumber[Cell72] = values.ToString();
-            showNumber[Cell73] = values.ToString();
-            showNumber[Cell74] = values.ToString();
-            showNumber[Cell75] = values.ToString();
-            showNumber[Cell76] = values.ToString();
-            showNumber[Cell77] = values.ToString();
-            showNumber[Cell78] = values.ToString();
-            showNumber[Cell80] = values.ToString();
-            showNumber[Cell81] = values.ToString();
-            showNumber[Cell82] = values.ToString();
-            showNumber[Cell83] = values.ToString();
-            showNumber[Cell84] = values.ToString();
-            showNumber[Cell85] = values.ToString();
-            showNumber[Cell86] = values.ToString();
-            showNumber[Cell87] = values.ToString();
-            showNumber[Cell88] = values.ToString();
-        }
-
-        private void Number3_Checked(object sender, RoutedEventArgs e)
-        {
-            values[Number3] = 3;
-
-            showNumber[Cell00] = values.ToString();
-            showNumber[Cell01] = values.ToString();
-            showNumber[Cell02] = values.ToString();
-            showNumber[Cell03] = values.ToString();
-            showNumber[Cell04] = values.ToString();
-            showNumber[Cell05] = values.ToString();
-            showNumber[Cell06] = values.ToString();
-            showNumber[Cell07] = values.ToString();
-            showNumber[Cell08] = values.ToString();
-            showNumber[Cell10] = values.ToString();
-            showNumber[Cell11] = values.ToString();
-            showNumber[Cell12] = values.ToString();
-            showNumber[Cell13] = values.ToString();
-            showNumber[Cell14] = values.ToString();
-            showNumber[Cell15] = values.ToString();
-            showNumber[Cell16] = values.ToString();
-            showNumber[Cell17] = values.ToString();
-            showNumber[Cell18] = values.ToString();
-            showNumber[Cell20] = values.ToString();
-            showNumber[Cell21] = values.ToString();
-            showNumber[Cell22] = values.ToString();
-            showNumber[Cell23] = values.ToString();
-            showNumber[Cell24] = values.ToString();
-            showNumber[Cell25] = values.ToString();
-            showNumber[Cell26] = values.ToString();
-            showNumber[Cell27] = values.ToString();
-            showNumber[Cell28] = values.ToString();
-            showNumber[Cell30] = values.ToString();
-            showNumber[Cell31] = values.ToString();
-            showNumber[Cell32] = values.ToString();
-            showNumber[Cell33] = values.ToString();
-            showNumber[Cell34] = values.ToString();
-            showNumber[Cell35] = values.ToString();
-            showNumber[Cell36] = values.ToString();
-            showNumber[Cell37] = values.ToString();
-            showNumber[Cell38] = values.ToString();
-            showNumber[Cell40] = values.ToString();
-            showNumber[Cell41] = values.ToString();
-            showNumber[Cell42] = values.ToString();
-            showNumber[Cell43] = values.ToString();
-            showNumber[Cell44] = values.ToString();
-            showNumber[Cell45] = values.ToString();
-            showNumber[Cell46] = values.ToString();
-            showNumber[Cell47] = values.ToString();
-            showNumber[Cell48] = values.ToString();
-            showNumber[Cell50] = values.ToString();
-            showNumber[Cell51] = values.ToString();
-            showNumber[Cell52] = values.ToString();
-            showNumber[Cell53] = values.ToString();
-            showNumber[Cell54] = values.ToString();
-            showNumber[Cell55] = values.ToString();
-            showNumber[Cell56] = values.ToString();
-            showNumber[Cell57] = values.ToString();
-            showNumber[Cell58] = values.ToString();
-            showNumber[Cell60] = values.ToString();
-            showNumber[Cell61] = values.ToString();
-            showNumber[Cell62] = values.ToString();
-            showNumber[Cell63] = values.ToString();
-            showNumber[Cell64] = values.ToString();
-            showNumber[Cell65] = values.ToString();
-            showNumber[Cell67] = values.ToString();
-            showNumber[Cell68] = values.ToString();
-            showNumber[Cell70] = values.ToString();
-            showNumber[Cell71] = values.ToString();
-            showNumber[Cell72] = values.ToString();
-            showNumber[Cell73] = values.ToString();
-            showNumber[Cell74] = values.ToString();
-            showNumber[Cell75] = values.ToString();
-            showNumber[Cell76] = values.ToString();
-            showNumber[Cell77] = values.ToString();
-            showNumber[Cell78] = values.ToString();
-            showNumber[Cell80] = values.ToString();
-            showNumber[Cell81] = values.ToString();
-            showNumber[Cell82] = values.ToString();
-            showNumber[Cell83] = values.ToString();
-            showNumber[Cell84] = values.ToString();
-            showNumber[Cell85] = values.ToString();
-            showNumber[Cell86] = values.ToString();
-            showNumber[Cell87] = values.ToString();
-            showNumber[Cell88] = values.ToString();
-        }
-
-        private void Number4_Checked(object sender, RoutedEventArgs e)
-        {
-            values[Number4] = 4;
-
-            showNumber[Cell00] = values.ToString();
-            showNumber[Cell01] = values.ToString();
-            showNumber[Cell02] = values.ToString();
-            showNumber[Cell03] = values.ToString();
-            showNumber[Cell04] = values.ToString();
-            showNumber[Cell05] = values.ToString();
-            showNumber[Cell06] = values.ToString();
-            showNumber[Cell07] = values.ToString();
-            showNumber[Cell08] = values.ToString();
-            showNumber[Cell10] = values.ToString();
-            showNumber[Cell11] = values.ToString();
-            showNumber[Cell12] = values.ToString();
-            showNumber[Cell13] = values.ToString();
-            showNumber[Cell14] = values.ToString();
-            showNumber[Cell15] = values.ToString();
-            showNumber[Cell16] = values.ToString();
-            showNumber[Cell17] = values.ToString();
-            showNumber[Cell18] = values.ToString();
-            showNumber[Cell20] = values.ToString();
-            showNumber[Cell21] = values.ToString();
-            showNumber[Cell22] = values.ToString();
-            showNumber[Cell23] = values.ToString();
-            showNumber[Cell24] = values.ToString();
-            showNumber[Cell25] = values.ToString();
-            showNumber[Cell26] = values.ToString();
-            showNumber[Cell27] = values.ToString();
-            showNumber[Cell28] = values.ToString();
-            showNumber[Cell30] = values.ToString();
-            showNumber[Cell31] = values.ToString();
-            showNumber[Cell32] = values.ToString();
-            showNumber[Cell33] = values.ToString();
-            showNumber[Cell34] = values.ToString();
-            showNumber[Cell35] = values.ToString();
-            showNumber[Cell36] = values.ToString();
-            showNumber[Cell37] = values.ToString();
-            showNumber[Cell38] = values.ToString();
-            showNumber[Cell40] = values.ToString();
-            showNumber[Cell41] = values.ToString();
-            showNumber[Cell42] = values.ToString();
-            showNumber[Cell43] = values.ToString();
-            showNumber[Cell44] = values.ToString();
-            showNumber[Cell45] = values.ToString();
-            showNumber[Cell46] = values.ToString();
-            showNumber[Cell47] = values.ToString();
-            showNumber[Cell48] = values.ToString();
-            showNumber[Cell50] = values.ToString();
-            showNumber[Cell51] = values.ToString();
-            showNumber[Cell52] = values.ToString();
-            showNumber[Cell53] = values.ToString();
-            showNumber[Cell54] = values.ToString();
-            showNumber[Cell55] = values.ToString();
-            showNumber[Cell56] = values.ToString();
-            showNumber[Cell57] = values.ToString();
-            showNumber[Cell58] = values.ToString();
-            showNumber[Cell60] = values.ToString();
-            showNumber[Cell61] = values.ToString();
-            showNumber[Cell62] = values.ToString();
-            showNumber[Cell63] = values.ToString();
-            showNumber[Cell64] = values.ToString();
-            showNumber[Cell65] = values.ToString();
-            showNumber[Cell67] = values.ToString();
-            showNumber[Cell68] = values.ToString();
-            showNumber[Cell70] = values.ToString();
-            showNumber[Cell71] = values.ToString();
-            showNumber[Cell72] = values.ToString();
-            showNumber[Cell73] = values.ToString();
-            showNumber[Cell74] = values.ToString();
-            showNumber[Cell75] = values.ToString();
-            showNumber[Cell76] = values.ToString();
-            showNumber[Cell77] = values.ToString();
-            showNumber[Cell78] = values.ToString();
-            showNumber[Cell80] = values.ToString();
-            showNumber[Cell81] = values.ToString();
-            showNumber[Cell82] = values.ToString();
-            showNumber[Cell83] = values.ToString();
-            showNumber[Cell84] = values.ToString();
-            showNumber[Cell85] = values.ToString();
-            showNumber[Cell86] = values.ToString();
-            showNumber[Cell87] = values.ToString();
-            showNumber[Cell88] = values.ToString();
-        }
-
-        private void Number5_Checked(object sender, RoutedEventArgs e)
-        {
-            values[Number5] = 5;
-
-            showNumber[Cell00] = values.ToString();
-            showNumber[Cell01] = values.ToString();
-            showNumber[Cell02] = values.ToString();
-            showNumber[Cell03] = values.ToString();
-            showNumber[Cell04] = values.ToString();
-            showNumber[Cell05] = values.ToString();
-            showNumber[Cell06] = values.ToString();
-            showNumber[Cell07] = values.ToString();
-            showNumber[Cell08] = values.ToString();
-            showNumber[Cell10] = values.ToString();
-            showNumber[Cell11] = values.ToString();
-            showNumber[Cell12] = values.ToString();
-            showNumber[Cell13] = values.ToString();
-            showNumber[Cell14] = values.ToString();
-            showNumber[Cell15] = values.ToString();
-            showNumber[Cell16] = values.ToString();
-            showNumber[Cell17] = values.ToString();
-            showNumber[Cell18] = values.ToString();
-            showNumber[Cell20] = values.ToString();
-            showNumber[Cell21] = values.ToString();
-            showNumber[Cell22] = values.ToString();
-            showNumber[Cell23] = values.ToString();
-            showNumber[Cell24] = values.ToString();
-            showNumber[Cell25] = values.ToString();
-            showNumber[Cell26] = values.ToString();
-            showNumber[Cell27] = values.ToString();
-            showNumber[Cell28] = values.ToString();
-            showNumber[Cell30] = values.ToString();
-            showNumber[Cell31] = values.ToString();
-            showNumber[Cell32] = values.ToString();
-            showNumber[Cell33] = values.ToString();
-            showNumber[Cell34] = values.ToString();
-            showNumber[Cell35] = values.ToString();
-            showNumber[Cell36] = values.ToString();
-            showNumber[Cell37] = values.ToString();
-            showNumber[Cell38] = values.ToString();
-            showNumber[Cell40] = values.ToString();
-            showNumber[Cell41] = values.ToString();
-            showNumber[Cell42] = values.ToString();
-            showNumber[Cell43] = values.ToString();
-            showNumber[Cell44] = values.ToString();
-            showNumber[Cell45] = values.ToString();
-            showNumber[Cell46] = values.ToString();
-            showNumber[Cell47] = values.ToString();
-            showNumber[Cell48] = values.ToString();
-            showNumber[Cell50] = values.ToString();
-            showNumber[Cell51] = values.ToString();
-            showNumber[Cell52] = values.ToString();
-            showNumber[Cell53] = values.ToString();
-            showNumber[Cell54] = values.ToString();
-            showNumber[Cell55] = values.ToString();
-            showNumber[Cell56] = values.ToString();
-            showNumber[Cell57] = values.ToString();
-            showNumber[Cell58] = values.ToString();
-            showNumber[Cell60] = values.ToString();
-            showNumber[Cell61] = values.ToString();
-            showNumber[Cell62] = values.ToString();
-            showNumber[Cell63] = values.ToString();
-            showNumber[Cell64] = values.ToString();
-            showNumber[Cell65] = values.ToString();
-            showNumber[Cell67] = values.ToString();
-            showNumber[Cell68] = values.ToString();
-            showNumber[Cell70] = values.ToString();
-            showNumber[Cell71] = values.ToString();
-            showNumber[Cell72] = values.ToString();
-            showNumber[Cell73] = values.ToString();
-            showNumber[Cell74] = values.ToString();
-            showNumber[Cell75] = values.ToString();
-            showNumber[Cell76] = values.ToString();
-            showNumber[Cell77] = values.ToString();
-            showNumber[Cell78] = values.ToString();
-            showNumber[Cell80] = values.ToString();
-            showNumber[Cell81] = values.ToString();
-            showNumber[Cell82] = values.ToString();
-            showNumber[Cell83] = values.ToString();
-            showNumber[Cell84] = values.ToString();
-            showNumber[Cell85] = values.ToString();
-            showNumber[Cell86] = values.ToString();
-            showNumber[Cell87] = values.ToString();
-            showNumber[Cell88] = values.ToString();
-        }
-
-        private void Number6_Checked(object sender, RoutedEventArgs e)
-        {
-            values[Number6] = 6;
-
-            showNumber[Cell00] = values.ToString();
-            showNumber[Cell01] = values.ToString();
-            showNumber[Cell02] = values.ToString();
-            showNumber[Cell03] = values.ToString();
-            showNumber[Cell04] = values.ToString();
-            showNumber[Cell05] = values.ToString();
-            showNumber[Cell06] = values.ToString();
-            showNumber[Cell07] = values.ToString();
-            showNumber[Cell08] = values.ToString();
-            showNumber[Cell10] = values.ToString();
-            showNumber[Cell11] = values.ToString();
-            showNumber[Cell12] = values.ToString();
-            showNumber[Cell13] = values.ToString();
-            showNumber[Cell14] = values.ToString();
-            showNumber[Cell15] = values.ToString();
-            showNumber[Cell16] = values.ToString();
-            showNumber[Cell17] = values.ToString();
-            showNumber[Cell18] = values.ToString();
-            showNumber[Cell20] = values.ToString();
-            showNumber[Cell21] = values.ToString();
-            showNumber[Cell22] = values.ToString();
-            showNumber[Cell23] = values.ToString();
-            showNumber[Cell24] = values.ToString();
-            showNumber[Cell25] = values.ToString();
-            showNumber[Cell26] = values.ToString();
-            showNumber[Cell27] = values.ToString();
-            showNumber[Cell28] = values.ToString();
-            showNumber[Cell30] = values.ToString();
-            showNumber[Cell31] = values.ToString();
-            showNumber[Cell32] = values.ToString();
-            showNumber[Cell33] = values.ToString();
-            showNumber[Cell34] = values.ToString();
-            showNumber[Cell35] = values.ToString();
-            showNumber[Cell36] = values.ToString();
-            showNumber[Cell37] = values.ToString();
-            showNumber[Cell38] = values.ToString();
-            showNumber[Cell40] = values.ToString();
-            showNumber[Cell41] = values.ToString();
-            showNumber[Cell42] = values.ToString();
-            showNumber[Cell43] = values.ToString();
-            showNumber[Cell44] = values.ToString();
-            showNumber[Cell45] = values.ToString();
-            showNumber[Cell46] = values.ToString();
-            showNumber[Cell47] = values.ToString();
-            showNumber[Cell48] = values.ToString();
-            showNumber[Cell50] = values.ToString();
-            showNumber[Cell51] = values.ToString();
-            showNumber[Cell52] = values.ToString();
-            showNumber[Cell53] = values.ToString();
-            showNumber[Cell54] = values.ToString();
-            showNumber[Cell55] = values.ToString();
-            showNumber[Cell56] = values.ToString();
-            showNumber[Cell57] = values.ToString();
-            showNumber[Cell58] = values.ToString();
-            showNumber[Cell60] = values.ToString();
-            showNumber[Cell61] = values.ToString();
-            showNumber[Cell62] = values.ToString();
-            showNumber[Cell63] = values.ToString();
-            showNumber[Cell64] = values.ToString();
-            showNumber[Cell65] = values.ToString();
-            showNumber[Cell67] = values.ToString();
-            showNumber[Cell68] = values.ToString();
-            showNumber[Cell70] = values.ToString();
-            showNumber[Cell71] = values.ToString();
-            showNumber[Cell72] = values.ToString();
-            showNumber[Cell73] = values.ToString();
-            showNumber[Cell74] = values.ToString();
-            showNumber[Cell75] = values.ToString();
-            showNumber[Cell76] = values.ToString();
-            showNumber[Cell77] = values.ToString();
-            showNumber[Cell78] = values.ToString();
-            showNumber[Cell80] = values.ToString();
-            showNumber[Cell81] = values.ToString();
-            showNumber[Cell82] = values.ToString();
-            showNumber[Cell83] = values.ToString();
-            showNumber[Cell84] = values.ToString();
-            showNumber[Cell85] = values.ToString();
-            showNumber[Cell86] = values.ToString();
-            showNumber[Cell87] = values.ToString();
-            showNumber[Cell88] = values.ToString();
-        }
-
-        private void Number7_Checked(object sender, RoutedEventArgs e)
-        {
-            values[Number7] = 7;
-
-            showNumber[Cell00] = values.ToString();
-            showNumber[Cell01] = values.ToString();
-            showNumber[Cell02] = values.ToString();
-            showNumber[Cell03] = values.ToString();
-            showNumber[Cell04] = values.ToString();
-            showNumber[Cell05] = values.ToString();
-            showNumber[Cell06] = values.ToString();
-            showNumber[Cell07] = values.ToString();
-            showNumber[Cell08] = values.ToString();
-            showNumber[Cell10] = values.ToString();
-            showNumber[Cell11] = values.ToString();
-            showNumber[Cell12] = values.ToString();
-            showNumber[Cell13] = values.ToString();
-            showNumber[Cell14] = values.ToString();
-            showNumber[Cell15] = values.ToString();
-            showNumber[Cell16] = values.ToString();
-            showNumber[Cell17] = values.ToString();
-            showNumber[Cell18] = values.ToString();
-            showNumber[Cell20] = values.ToString();
-            showNumber[Cell21] = values.ToString();
-            showNumber[Cell22] = values.ToString();
-            showNumber[Cell23] = values.ToString();
-            showNumber[Cell24] = values.ToString();
-            showNumber[Cell25] = values.ToString();
-            showNumber[Cell26] = values.ToString();
-            showNumber[Cell27] = values.ToString();
-            showNumber[Cell28] = values.ToString();
-            showNumber[Cell30] = values.ToString();
-            showNumber[Cell31] = values.ToString();
-            showNumber[Cell32] = values.ToString();
-            showNumber[Cell33] = values.ToString();
-            showNumber[Cell34] = values.ToString();
-            showNumber[Cell35] = values.ToString();
-            showNumber[Cell36] = values.ToString();
-            showNumber[Cell37] = values.ToString();
-            showNumber[Cell38] = values.ToString();
-            showNumber[Cell40] = values.ToString();
-            showNumber[Cell41] = values.ToString();
-            showNumber[Cell42] = values.ToString();
-            showNumber[Cell43] = values.ToString();
-            showNumber[Cell44] = values.ToString();
-            showNumber[Cell45] = values.ToString();
-            showNumber[Cell46] = values.ToString();
-            showNumber[Cell47] = values.ToString();
-            showNumber[Cell48] = values.ToString();
-            showNumber[Cell50] = values.ToString();
-            showNumber[Cell51] = values.ToString();
-            showNumber[Cell52] = values.ToString();
-            showNumber[Cell53] = values.ToString();
-            showNumber[Cell54] = values.ToString();
-            showNumber[Cell55] = values.ToString();
-            showNumber[Cell56] = values.ToString();
-            showNumber[Cell57] = values.ToString();
-            showNumber[Cell58] = values.ToString();
-            showNumber[Cell60] = values.ToString();
-            showNumber[Cell61] = values.ToString();
-            showNumber[Cell62] = values.ToString();
-            showNumber[Cell63] = values.ToString();
-            showNumber[Cell64] = values.ToString();
-            showNumber[Cell65] = values.ToString();
-            showNumber[Cell67] = values.ToString();
-            showNumber[Cell68] = values.ToString();
-            showNumber[Cell70] = values.ToString();
-            showNumber[Cell71] = values.ToString();
-            showNumber[Cell72] = values.ToString();
-            showNumber[Cell73] = values.ToString();
-            showNumber[Cell74] = values.ToString();
-            showNumber[Cell75] = values.ToString();
-            showNumber[Cell76] = values.ToString();
-            showNumber[Cell77] = values.ToString();
-            showNumber[Cell78] = values.ToString();
-            showNumber[Cell80] = values.ToString();
-            showNumber[Cell81] = values.ToString();
-            showNumber[Cell82] = values.ToString();
-            showNumber[Cell83] = values.ToString();
-            showNumber[Cell84] = values.ToString();
-            showNumber[Cell85] = values.ToString();
-            showNumber[Cell86] = values.ToString();
-            showNumber[Cell87] = values.ToString();
-            showNumber[Cell88] = values.ToString();
-        }
-
-        private void Number8_Checked(object sender, RoutedEventArgs e)
-        {
-            values[Number8] = 8;
-
-            showNumber[Cell00] = values.ToString();
-            showNumber[Cell01] = values.ToString();
-            showNumber[Cell02] = values.ToString();
-            showNumber[Cell03] = values.ToString();
-            showNumber[Cell04] = values.ToString();
-            showNumber[Cell05] = values.ToString();
-            showNumber[Cell06] = values.ToString();
-            showNumber[Cell07] = values.ToString();
-            showNumber[Cell08] = values.ToString();
-            showNumber[Cell10] = values.ToString();
-            showNumber[Cell11] = values.ToString();
-            showNumber[Cell12] = values.ToString();
-            showNumber[Cell13] = values.ToString();
-            showNumber[Cell14] = values.ToString();
-            showNumber[Cell15] = values.ToString();
-            showNumber[Cell16] = values.ToString();
-            showNumber[Cell17] = values.ToString();
-            showNumber[Cell18] = values.ToString();
-            showNumber[Cell20] = values.ToString();
-            showNumber[Cell21] = values.ToString();
-            showNumber[Cell22] = values.ToString();
-            showNumber[Cell23] = values.ToString();
-            showNumber[Cell24] = values.ToString();
-            showNumber[Cell25] = values.ToString();
-            showNumber[Cell26] = values.ToString();
-            showNumber[Cell27] = values.ToString();
-            showNumber[Cell28] = values.ToString();
-            showNumber[Cell30] = values.ToString();
-            showNumber[Cell31] = values.ToString();
-            showNumber[Cell32] = values.ToString();
-            showNumber[Cell33] = values.ToString();
-            showNumber[Cell34] = values.ToString();
-            showNumber[Cell35] = values.ToString();
-            showNumber[Cell36] = values.ToString();
-            showNumber[Cell37] = values.ToString();
-            showNumber[Cell38] = values.ToString();
-            showNumber[Cell40] = values.ToString();
-            showNumber[Cell41] = values.ToString();
-            showNumber[Cell42] = values.ToString();
-            showNumber[Cell43] = values.ToString();
-            showNumber[Cell44] = values.ToString();
-            showNumber[Cell45] = values.ToString();
-            showNumber[Cell46] = values.ToString();
-            showNumber[Cell47] = values.ToString();
-            showNumber[Cell48] = values.ToString();
-            showNumber[Cell50] = values.ToString();
-            showNumber[Cell51] = values.ToString();
-            showNumber[Cell52] = values.ToString();
-            showNumber[Cell53] = values.ToString();
-            showNumber[Cell54] = values.ToString();
-            showNumber[Cell55] = values.ToString();
-            showNumber[Cell56] = values.ToString();
-            showNumber[Cell57] = values.ToString();
-            showNumber[Cell58] = values.ToString();
-            showNumber[Cell60] = values.ToString();
-            showNumber[Cell61] = values.ToString();
-            showNumber[Cell62] = values.ToString();
-            showNumber[Cell63] = values.ToString();
-            showNumber[Cell64] = values.ToString();
-            showNumber[Cell65] = values.ToString();
-            showNumber[Cell67] = values.ToString();
-            showNumber[Cell68] = values.ToString();
-            showNumber[Cell70] = values.ToString();
-            showNumber[Cell71] = values.ToString();
-            showNumber[Cell72] = values.ToString();
-            showNumber[Cell73] = values.ToString();
-            showNumber[Cell74] = values.ToString();
-            showNumber[Cell75] = values.ToString();
-            showNumber[Cell76] = values.ToString();
-            showNumber[Cell77] = values.ToString();
-            showNumber[Cell78] = values.ToString();
-            showNumber[Cell80] = values.ToString();
-            showNumber[Cell81] = values.ToString();
-            showNumber[Cell82] = values.ToString();
-            showNumber[Cell83] = values.ToString();
-            showNumber[Cell84] = values.ToString();
-            showNumber[Cell85] = values.ToString();
-            showNumber[Cell86] = values.ToString();
-            showNumber[Cell87] = values.ToString();
-            showNumber[Cell88] = values.ToString();
-        }
-
-        private void Number9_Checked(object sender, RoutedEventArgs e)
-        {
-
-            showNumber[Cell00] = values.ToString();
-            showNumber[Cell01] = values.ToString();
-            showNumber[Cell02] = values.ToString();
-            showNumber[Cell03] = values.ToString();
-            showNumber[Cell04] = values.ToString();
-            showNumber[Cell05] = values.ToString();
-            showNumber[Cell06] = values.ToString();
-            showNumber[Cell07] = values.ToString();
-            showNumber[Cell08] = values.ToString();
-            showNumber[Cell10] = values.ToString();
-            showNumber[Cell11] = values.ToString();
-            showNumber[Cell12] = values.ToString();
-            showNumber[Cell13] = values.ToString();
-            showNumber[Cell14] = values.ToString();
-            showNumber[Cell15] = values.ToString();
-            showNumber[Cell16] = values.ToString();
-            showNumber[Cell17] = values.ToString();
-            showNumber[Cell18] = values.ToString();
-            showNumber[Cell20] = values.ToString();
-            showNumber[Cell21] = values.ToString();
-            showNumber[Cell22] = values.ToString();
-            showNumber[Cell23] = values.ToString();
-            showNumber[Cell24] = values.ToString();
-            showNumber[Cell25] = values.ToString();
-            showNumber[Cell26] = values.ToString();
-            showNumber[Cell27] = values.ToString();
-            showNumber[Cell28] = values.ToString();
-            showNumber[Cell30] = values.ToString();
-            showNumber[Cell31] = values.ToString();
-            showNumber[Cell32] = values.ToString();
-            showNumber[Cell33] = values.ToString();
-            showNumber[Cell34] = values.ToString();
-            showNumber[Cell35] = values.ToString();
-            showNumber[Cell36] = values.ToString();
-            showNumber[Cell37] = values.ToString();
-            showNumber[Cell38] = values.ToString();
-            showNumber[Cell40] = values.ToString();
-            showNumber[Cell41] = values.ToString();
-            showNumber[Cell42] = values.ToString();
-            showNumber[Cell43] = values.ToString();
-            showNumber[Cell44] = values.ToString();
-            showNumber[Cell45] = values.ToString();
-            showNumber[Cell46] = values.ToString();
-            showNumber[Cell47] = values.ToString();
-            showNumber[Cell48] = values.ToString();
-            showNumber[Cell50] = values.ToString();
-            showNumber[Cell51] = values.ToString();
-            showNumber[Cell52] = values.ToString();
-            showNumber[Cell53] = values.ToString();
-            showNumber[Cell54] = values.ToString();
-            showNumber[Cell55] = values.ToString();
-            showNumber[Cell56] = values.ToString();
-            showNumber[Cell57] = values.ToString();
-            showNumber[Cell58] = values.ToString();
-            showNumber[Cell60] = values.ToString();
-            showNumber[Cell61] = values.ToString();
-            showNumber[Cell62] = values.ToString();
-            showNumber[Cell63] = values.ToString();
-            showNumber[Cell64] = values.ToString();
-            showNumber[Cell65] = values.ToString();
-            showNumber[Cell67] = values.ToString();
-            showNumber[Cell68] = values.ToString();
-            showNumber[Cell70] = values.ToString();
-            showNumber[Cell71] = values.ToString();
-            showNumber[Cell72] = values.ToString();
-            showNumber[Cell73] = values.ToString();
-            showNumber[Cell74] = values.ToString();
-            showNumber[Cell75] = values.ToString();
-            showNumber[Cell76] = values.ToString();
-            showNumber[Cell77] = values.ToString();
-            showNumber[Cell78] = values.ToString();
-            showNumber[Cell80] = values.ToString();
-            showNumber[Cell81] = values.ToString();
-            showNumber[Cell82] = values.ToString();
-            showNumber[Cell83] = values.ToString();
-            showNumber[Cell84] = values.ToString();
-            showNumber[Cell85] = values.ToString();
-            showNumber[Cell86] = values.ToString();
-            showNumber[Cell87] = values.ToString();
-            showNumber[Cell88] = values.ToString();
-        }
-
-        private void Cell00_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            values[Number1] = 1;
-            showNumber[Cell00] = values.ToString();
+            TextBox currentCell = sender as TextBox;
+            var validInput = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "" };
+            if (validInput.Contains(currentCell.Text))
+            {
+                string cellname = currentCell.Name;
+                int x = int.Parse(cellname.Substring(4, 1));
+                int y = int.Parse(cellname.Substring(5, 1));
+                this.activeGameState.ArrPuzzleCurrent[x, y] = currentCell.Text;
+                currentCell.Background = new ImageBrush();
+            }
+            else
+            {
+                currentCell.Text = String.Empty;
+            }
         }
     }
 }
